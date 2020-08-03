@@ -1,0 +1,25 @@
+<!--pages/wd/jcdz.wxml 检查地址-->
+<view class="container">
+ <view class="jcdz_bg">
+  <view class="bt">添加检查地址</view>
+  <view class="xx">
+   <view>联系人</view>
+   <input type="text"></input>
+  </view>
+  <view class="xx">
+   <view>联系电话</view>
+   <input type="number"></input>
+  </view>
+  <view class="xx">
+   <view>门牌号</view>
+   <input type="text"></input>
+  </view>
+  <view class="xx">
+   <view>详细地址</view>
+   <input type="text" placeholder-class="phcolor" placeholder="例：如道路，小区，楼栋号，单元室等"></input>
+  </view>
+  <view class="tj_an">
+   <button>提交</button>
+  </view>
+ </view>
+</view>

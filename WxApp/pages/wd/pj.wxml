@@ -1,0 +1,30 @@
+<!--pages/wd/pj.wxml 评价-->
+<view class="container">
+ <view class="pj_bg">
+  <view class="cp">
+   <view class="tu">
+    <image src="../../image/cp_tu.png"></image>
+   </view>
+   <view class="xx">
+    <view class="bt">基础验收</view>
+    <view class="jg">¥ 1880.80</view>
+    <view class="yj">¥ 2880.80</view>
+   </view>
+  </view>
+  <view class="pf">
+   <text>综合评分</text>
+   <view>
+    <block wx:for="{{one_2}}" wx:key="index">
+     <image catchtap='in_xin' id='{{index+1}}' data-in='use_sc2' src='../../image/pj_xxtbb.png'></image>
+    </block>
+    <block wx:for="{{two_2}}" wx:key="index">
+     <image catchtap='in_xin' id='{{index+1}}' data-in='use_sc' src='../../image/pj_xxtb.png'></image>
+    </block>
+   </view>
+   <textarea placeholder-class="phcolor" placeholder="买家留言......"></textarea>
+  </view>
+  <view class="tj_an">
+   <button>提交</button>
+  </view>
+ </view>
+</view>

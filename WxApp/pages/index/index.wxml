@@ -1,0 +1,151 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="sy_bg">
+    <image src="../../image/sy_top.png"></image>
+    <view class="banner">
+      <!--
+        indicator-dots='true' 是否显示指示点  默认 false
+        indicator-color:指示点颜色
+        indicator-active-color:选中的指示点颜色
+        autoplay：是否自动切换  默认：false
+        interval:自动切换时间间隔
+        duration：滑动动画时长
+        vertical  是否改成纵向， 默认  false
+      -->
+      <swiper autoplay='true' interval='5000' duration='500' class='banner_bg'>
+        <block wx:for="{{imgUrl}}" wx:key="index">
+          <swiper-item class="item_image">
+            <image src='{{item}}' class='swiper_image' mode="aspectFill"></image>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+
+    <view class='nav_bg'>
+      <view class='nav_fy'>
+        <navigator url=''>
+          <image src='../../image/nav_tb1.png'></image>
+          <text>科学除醛</text>
+        </navigator>
+      </view>
+      <view class='nav_fy'>
+        <navigator url=''>
+          <image src='../../image/nav_tb2.png'></image>
+          <text>品牌介绍</text>
+        </navigator>
+      </view>
+      <view class='nav_fy'>
+        <navigator url=''>
+          <image src='../../image/nav_tb3.png'></image>
+          <text>成功案例</text>
+        </navigator>
+      </view>
+      <view class='nav_fy'>
+        <navigator url='../xsyk/xsyk'>
+          <image src='../../image/nav_tb4.png'></image>
+          <text>核心优势</text>
+        </navigator>
+      </view>
+      <view class='nav_fy'>
+        <navigator url='../jfjl/jfjl'>
+          <image src='../../image/nav_tb5.png'></image>
+          <text>荣誉资质</text>
+        </navigator>
+      </view>
+      <view class='nav_fy'>
+        <navigator url='../yxtg/yxtg'>
+          <image src='../../image/nav_tb6.png'></image>
+          <text>专家问题</text>
+        </navigator>
+      </view>
+      <view class='nav_fy'>
+        <navigator url='../jchd/jchd'>
+          <image src='../../image/nav_tb7.png'></image>
+          <text>权威报告</text>
+        </navigator>
+      </view>
+      <view class='nav_fy'>
+        <navigator url='../ggjx/ggjx'>
+          <image src='../../image/nav_tb8.png'></image>
+          <text>公司简历</text>
+        </navigator>
+      </view>
+    </view>
+
+    <view class="gg">
+      <!--
+        indicator-dots='true' 是否显示指示点  默认 false
+        indicator-color:指示点颜色
+        indicator-active-color:选中的指示点颜色
+        autoplay：是否自动切换  默认：false
+        interval:自动切换时间间隔
+        duration：滑动动画时长
+        vertical  是否改成纵向， 默认  false
+      -->
+      <swiper autoplay='true' interval='5000' duration='500' previous-margin="30rpx" next-margin="30rpx" class='gg_bg'>
+        <block wx:for="{{ggUrl}}" wx:key="index">
+          <swiper-item class="item_image">
+            <image src='{{item}}' class='swiper_image' mode="aspectFill"></image>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+
+    <view class="cp_list">
+      <view class="cp">
+        <navigator>
+          <image src="../../image/cp_tu.png"></image>
+          <view class="bt">基础验收</view>
+          <view class="jg">¥ 1880.80</view>
+          <view class="yj">¥ 2880.80</view>
+        </navigator>
+        <view class="gwc_an">
+          <image src="../../image/gwc_tb.png"></image>
+        </view>
+      </view>
+      <view class="cp">
+        <navigator>
+          <image src="../../image/cp_tu.png"></image>
+          <view class="bt">基础验收</view>
+          <view class="jg">¥ 1880.80</view>
+          <view class="yj">¥ 2880.80</view>
+        </navigator>
+        <view class="gwc_an">
+          <image src="../../image/gwc_tb.png"></image>
+        </view>
+      </view>
+      <view class="cp">
+        <navigator>
+          <image src="../../image/cp_tu.png"></image>
+          <view class="bt">基础验收</view>
+          <view class="jg">¥ 1880.80</view>
+          <view class="yj">¥ 2880.80</view>
+        </navigator>
+        <view class="gwc_an">
+          <image src="../../image/gwc_tb.png"></image>
+        </view>
+      </view>
+    </view>
+
+    <view class="fdc">
+      <view class="nr">
+        <view class="xx">
+          <view class="bt">北京百万家园装修监理中心</view>
+          <view class="pj">
+            <text>评价：</text>
+            <image src="../../image/xx_tb.png"></image>
+            <image src="../../image/xx_tb.png"></image>
+            <image src="../../image/xx_tb.png"></image>
+            <image src="../../image/xx_tb.png"></image>
+            <image src="../../image/xx_tb.png"></image>
+          </view>
+          <text>电话：010-67309999</text>
+        </view>
+        <view class="dh_an">
+           <image src="../../image/dh_tb.png"></image>
+          <view>一键导航</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

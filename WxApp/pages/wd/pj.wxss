@@ -1,0 +1,93 @@
+/* pages/wd/pj.wxss */
+.pj_bg{
+ padding: 25rpx 30rpx 0;
+}
+.pj_bg .cp{
+ display: flex;
+ flex-wrap: wrap;
+ align-items: center;
+ margin-bottom: 35rpx;
+}
+.pj_bg .cp .tu{
+ width: 130rpx;
+ height: 135rpx;
+ border-radius: 20rpx;
+ overflow: hidden;
+}
+.pj_bg .cp .tu image{
+ width: 100%;
+ height: 100%;
+}
+.pj_bg .cp .xx{
+ margin-left: 30rpx;
+ width: calc(100% - 160rpx);
+}
+.pj_bg .cp .xx .bt{
+ font-size: 24rpx;
+ line-height: 34rpx;
+ color: #333;
+ margin-bottom: 15rpx;
+ overflow: hidden;
+ text-overflow: ellipsis;
+ display: -webkit-box;
+ -webkit-line-clamp: 1;
+ -webkit-box-orient: vertical;
+}
+.pj_bg .cp .xx .jg{
+ font-size: 36rpx;
+ line-height: 46rpx;
+ color: #fa292f;
+ margin-bottom: 10rpx;
+}
+.pj_bg .cp .xx .yj{
+ font-size: 22rpx;
+ line-height: 32rpx;
+ color: #999;
+ text-decoration: line-through;
+}
+.pj_bg .pf{
+ margin-bottom: 80rpx;
+}
+.pj_bg .pf text{
+ display: block;
+ font-size: 35rpx;
+ line-height: 45rpx;
+ color: #333;
+ margin-bottom: 20rpx;
+}
+.pj_bg .pf view{
+ display: flex;
+ flex-wrap: wrap;
+ margin-bottom: 40rpx;
+}
+.pj_bg .pf view image{
+ width: 56rpx;
+ height: 50rpx;
+ margin-right: 20rpx;
+}
+.pj_bg .pf textarea{
+ box-sizing: border-box;
+ border: 1rpx solid #e4e4e4;
+ padding: 15rpx 25rpx;
+ border-radius: 20rpx;
+ width: 100%;
+ height: 360rpx;
+ font-size: 22rpx;
+ line-height: 32rpx;
+ color: #999;
+}
+.pj_bg .tj_an{
+ padding: 0 40rpx;
+}
+.pj_bg .tj_an button{
+ font-size: 35rpx;
+ line-height: 100rpx;
+ color: #fff;
+ background: #fb595b;
+ border-radius: 40rpx;
+}
+.pj_bg .tj_an button::after{
+ border: none;
+}
+
+

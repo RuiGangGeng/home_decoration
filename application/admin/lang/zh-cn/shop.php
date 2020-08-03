@@ -1,0 +1,31 @@
+<?php
+
+return [
+    'User_id'                       => '用户',
+    'Category_id'                   => '经营行业',
+    'Name'                          => '名称',
+    'Logo_image'                    => 'logo',
+    'Short'                         => '简介',
+    'Contact'                       => '联系人',
+    'Phone'                         => '手机号',
+    'Password'                      => '密码',
+    'Status'                        => '状态',
+    'Status 0'                      => '禁用',
+    'Status 1'                      => '正常',
+    'Status 2'                      => '审核中',
+    'Status 3'                      => '审核失败',
+    'Createtime'                    => '创建时间',
+    'Updatetime'                    => '更新时间',
+    'Deletetime'                    => '删除时间',
+    'Shopaddress.address'           => '商铺地址',
+    'Shopaddress.longitude'         => '经度',
+    'Shopaddress.latitude'          => '纬度',
+    'Shopaddress.hours_start'       => '营业开始时间',
+    'Shopaddress.hours_end'         => '营业结束时间',
+    'Shopaddress.delivery'     => '配送时间 分钟',
+    'Shopaddress.distance'          => '配送距离 千米',
+    'Shopmaterial.card_up_image'    => '身份证正面',
+    'Shopmaterial.card_down_image'  => '身份证反面',
+    'Shopmaterial.license_image'    => '营业执照',
+    'Shopmaterial.storefront_image' => '实体店照片'
+];

@@ -1,0 +1,183 @@
+/**index.wxss**/
+.sy_bg{
+  padding-bottom: 360rpx;
+}
+.sy_bg > image{
+  width: 100%;
+  height: 244rpx;
+}
+.banner{
+  padding: 0 20rpx;
+  margin-bottom: 70rpx;
+  position: relative;
+  margin-top: -180rpx;
+}
+.banner_bg{
+    width: 100%;
+    height: 420rpx;
+    overflow: hidden;
+    border-radius: 8rpx;
+}
+.banner .item_image image{
+  width: 100%;
+  height: 420rpx;
+}
+
+
+.nav_bg{
+  display: flex;
+  flex-flow: row;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  padding: 0 20rpx;
+  margin-bottom: 50rpx;
+}
+.nav_fy{
+  width: 25%;
+  text-align: center;
+   margin-bottom: 20rpx;
+}
+.nav_fy navigator image{
+  width: 92rpx;
+  height: 96rpx;
+  vertical-align:middle;
+  
+}
+
+.nav_fy navigator text{
+  font-size: 24rpx;
+  line-height: 50rpx;
+  color: #333;
+  display: inline-block;
+}
+
+.gg{
+  margin-bottom: 65rpx;
+}
+
+.gg_bg{
+    width: 100%;
+    height: 318rpx;
+}
+.gg_bg .item_image{
+  box-sizing: border-box;
+  padding: 0 15rpx;
+}
+.gg_bg .item_image image{
+  width: 100%;
+  height: 318rpx;
+  border-radius: 40rpx;
+  box-shadow: 0rpx 1rpx 20rpx 5rpx rgba(153, 153, 153, 0.36);
+}
+.cp_list{
+  padding: 0 25rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cp_list .cp{
+  width: calc(33.3% - 16rpx);
+  margin-right: 24rpx;
+  background: #fff;
+  box-shadow: 0rpx 1rpx 20rpx 5rpx rgba(153, 153, 153, 0.36);
+  border-radius: 8rpx;
+  margin-bottom: 30rpx;
+  position: relative;
+}
+.cp_list .cp:nth-child(3n){
+  margin-right: 0;
+}
+.cp_list .cp navigator{
+  padding: 10rpx 10rpx 30rpx;
+}
+.cp_list .cp navigator image{
+  width: 100%;
+  height: 210rpx;
+  margin-bottom: 15rpx;
+}
+.cp_list .cp navigator .bt{
+  font-size: 24rpx;
+  line-height: 34rpx;
+  color: #333;
+  margin-bottom: 15rpx;
+}
+.cp_list .cp navigator .jg{
+  font-size: 30rpx;
+  line-height: 40rpx;
+  color: #fa292f;
+  margin-bottom: 5rpx;
+}
+.cp_list .cp navigator .yj{
+  font-size: 20rpx;
+  line-height: 30rpx;
+  color: #999;
+  text-decoration: line-through;
+}
+.cp_list .cp .gwc_an{
+  width: 34rpx;
+  height: 34rpx;
+  position: absolute;
+  right: 25rpx;
+  bottom: 20rpx;
+}
+.cp_list .cp .gwc_an image{
+  width: 100%;
+  height: 100%;
+}
+.fdc{
+  box-sizing: border-box;
+  width: 100%;
+  position: fixed;
+  padding: 0 15rpx 75rpx;
+  bottom: 0rpx;
+  left: 0;
+  background: #fff;
+}
+
+.fdc .nr{
+  border-radius: 20rpx;
+  padding: 50rpx 30rpx 30rpx;
+  box-shadow: 0rpx 1rpx 20rpx 5rpx rgba(153, 153, 153, 0.36);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.fdc .nr .xx .bt{
+  font-size: 26rpx;
+  line-height: 36rpx;
+  color: #333;
+  margin-bottom: 5rpx;
+}
+.fdc .nr .xx .pj{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.fdc .nr .xx .pj text{
+  font-size: 24rpx;
+  line-height: 34rpx;
+  color: #999;
+}
+.fdc .nr .xx .pj image{
+  width: 28rpx;
+  height: 26rpx;
+  margin: 0 5rpx;
+}
+.fdc .nr .xx  > text{
+  font-size: 24rpx;
+  line-height: 34rpx;
+  color: #999;
+}
+.fdc .nr .dh_an image{
+  width: 142rpx;
+  height: 142rpx;
+}
+.fdc .nr .dh_an view{
+  font-size: 21rpx;
+  line-height: 31rpx;
+  color: #666;
+  text-align: center;
+}
+
+
+

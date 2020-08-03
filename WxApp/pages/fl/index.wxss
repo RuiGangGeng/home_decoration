@@ -1,0 +1,24 @@
+/* pages/fl/index.wxss */
+.fl_bg{
+ padding: 40rpx 25rpx 0;
+ display: flex;
+ flex-wrap: wrap;
+}
+.fl_bg navigator{
+ width: 25%;
+ text-align: center;
+ margin-bottom: 40rpx;
+}
+.fl_bg navigator image{
+ width: 148rpx;
+ height: 153rpx;
+}
+.fl_bg navigator view{
+ font-size: 22rpx;
+ line-height: 32rpx;
+ color: #333;
+}
+
+
+
+

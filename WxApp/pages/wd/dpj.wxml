@@ -1,0 +1,37 @@
+<!--pages/wd/dpj.wxml 待评价-->
+<view class="container">
+ <view class="cont_bg">
+  <view class="list">
+   <view class="nr">
+    <navigator>
+     <view class="tu">
+      <image src="../../image/cp_tu.png"></image>
+     </view>
+     <view class="xx">
+      <view class="bt">基础验收</view>
+      <view class="jg">¥ 1880.80</view>
+      <view class="yj">¥ 2880.80</view>
+     </view>
+    </navigator>
+    <navigator url="pj" class="pj_an">
+     <image src="../../image/pj_tb.png"></image>
+    </navigator>
+   </view>
+   <view class="nr">
+    <navigator>
+     <view class="tu">
+      <image src="../../image/cp_tu.png"></image>
+     </view>
+     <view class="xx">
+      <view class="bt">基础验收</view>
+      <view class="jg">¥ 1880.80</view>
+      <view class="yj">¥ 2880.80</view>
+     </view>
+    </navigator>
+    <navigator url="pj" class="pj_an">
+     <image src="../../image/pj_tb.png"></image>
+    </navigator>
+   </view>
+  </view>
+ </view>
+</view>

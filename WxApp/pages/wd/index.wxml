@@ -1,0 +1,69 @@
+<!--pages/wd/index.wxml 我的-->
+<view class="container">
+ <view class="wd_bg">
+  <view class="top">
+   <image src="../../image/wd_top.jpg"></image>
+   <view class="xx">
+    <image src="../../image/wd_tx.jpg"></image>
+    <view>点击登录</view>
+   </view>
+  </view>
+  <view class="wd_sb">
+   <view class="wd_lj">
+    <navigator url="wdsc">
+     <view class="sl">220</view>
+     <view class="xx">
+      <image src="../../image/sc_tb.png"></image>
+      <text>我的收藏</text>
+     </view>
+    </navigator>
+    <navigator url="wdzj">
+     <view class="sl">220</view>
+     <view class="xx zj">
+      <image src="../../image/zj_tb.png"></image>
+      <text>我的足迹</text>
+     </view>
+    </navigator>
+   </view>
+
+   <view class="nav">
+    <navigator url="yfk">
+     <view class="xx">
+      <view>
+       <image src="../../image/wd_navtb1.png" style="width:39rpx;height:30rpx;"></image>
+      </view>
+      <text>已付款</text>
+     </view>
+     <image src="../../image/jt_lj.png"></image>
+    </navigator>
+    <navigator url="djc">
+     <view class="xx">
+      <view>
+       <image src="../../image/wd_navtb2.png" style="width:39rpx;height:39rpx;"></image>
+      </view>
+      <text>待检查</text>
+     </view>
+     <image src="../../image/jt_lj.png"></image>
+    </navigator>
+    <navigator url="dpj">
+     <view class="xx">
+      <view>
+       <image src="../../image/wd_navtb3.png" style="width:35rpx;height:34rpx;"></image>
+      </view>
+      <text>待评价</text>
+     </view>
+     <image src="../../image/jt_lj.png"></image>
+    </navigator>
+    <navigator url="jcdz">
+     <view class="xx">
+      <view>
+       <image src="../../image/wd_navtb4.png" style="width:31rpx;height:42rpx;"></image>
+      </view>
+      <text>检查地址</text>
+     </view>
+     <image src="../../image/jt_lj.png"></image>
+    </navigator>
+   </view>
+  </view>
+ </view>
+</view>

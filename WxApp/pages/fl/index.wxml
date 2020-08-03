@@ -1,0 +1,57 @@
+<!--pages/fl/index.wxml 分类-->
+<view class="container">
+ <view class="fl_bg">
+  <navigator>
+   <image src="../../image/fl_tb1.png"></image>
+   <view>单项检查</view>
+  </navigator>
+  <navigator>
+   <image src="../../image/fl_tb2.png"></image>
+   <view>单项检查</view>
+  </navigator>
+  <navigator>
+   <image src="../../image/fl_tb3.png"></image>
+   <view>单项检查</view>
+  </navigator>
+  <navigator>
+   <image src="../../image/fl_tb4.png"></image>
+   <view>单项检查</view>
+  </navigator>
+  <navigator>
+   <image src="../../image/fl_tb5.png"></image>
+   <view>单项检查</view>
+  </navigator>
+  <navigator>
+   <image src="../../image/fl_tb6.png"></image>
+   <view>单项检查</view>
+  </navigator>
+  <navigator>
+   <image src="../../image/fl_tb7.png"></image>
+   <view>单项检查</view>
+  </navigator>
+  <navigator>
+   <image src="../../image/fl_tb8.png"></image>
+   <view>单项检查</view>
+  </navigator>
+  <navigator>
+   <image src="../../image/fl_tb9.png"></image>
+   <view>单项检查</view>
+  </navigator>
+  <navigator>
+   <image src="../../image/fl_tb10.png"></image>
+   <view>单项检查</view>
+  </navigator>
+  <navigator>
+   <image src="../../image/fl_tb11.png"></image>
+   <view>单项检查</view>
+  </navigator>
+  <navigator>
+   <image src="../../image/fl_tb12.png"></image>
+   <view>单项检查</view>
+  </navigator>
+  <navigator>
+   <image src="../../image/fl_tb13.png"></image>
+   <view>单项检查</view>
+  </navigator>
+ </view>
+</view>

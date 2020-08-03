@@ -1,0 +1,5 @@
+vendor/
+thinkphp/
+.idea/
+runtime/
+public/assets/libs/

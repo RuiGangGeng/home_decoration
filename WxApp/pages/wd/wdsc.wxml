@@ -1,0 +1,40 @@
+<!--pages/wd/wdsc.wxml 我的收藏-->
+<view class="container">
+ <view class="cont_bg">
+  <view class="wsj">
+    <image src="../../image/wsc_tb.png"></image>
+  </view>
+  <view class="list">
+   <view class="nr">
+    <navigator>
+     <view class="tu">
+      <image src="../../image/cp_tu.png"></image>
+     </view>
+     <view class="xx">
+      <view class="bt">基础验收</view>
+      <view class="jg">¥ 1880.80</view>
+      <view class="yj">¥ 2880.80</view>
+     </view>
+    </navigator>
+    <view class="gwc_an">
+     <image src="../../image/gwc_tb.png"></image>
+    </view>
+   </view>
+   <view class="nr">
+    <navigator>
+     <view class="tu">
+      <image src="../../image/cp_tu.png"></image>
+     </view>
+     <view class="xx">
+      <view class="bt">基础验收</view>
+      <view class="jg">¥ 1880.80</view>
+      <view class="yj">¥ 2880.80</view>
+     </view>
+    </navigator>
+    <view class="gwc_an">
+     <image src="../../image/gwc_tb.png"></image>
+    </view>
+   </view>
+  </view>
+ </view>
+</view>

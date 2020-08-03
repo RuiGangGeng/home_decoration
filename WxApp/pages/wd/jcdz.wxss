@@ -1,0 +1,56 @@
+/* pages/wd/jcdz.wxss */
+.jcdz_bg{
+ padding: 30rpx 30rpx 0;
+}
+.jcdz_bg .bt{
+ font-size: 28rpx;
+ line-height: 128rpx;
+ color: #333;
+ padding: 0 48rpx;
+ border-bottom: 1rpx solid #f6f6f6;
+ margin-bottom: 40rpx;
+}
+.jcdz_bg .xx{
+ padding: 0 48rpx;
+ margin-bottom: 35rpx;
+}
+.jcdz_bg .xx view{
+ font-size: 25rpx;
+ line-height: 35rpx;
+ color: #666;
+ margin-bottom: 10rpx;
+}
+.jcdz_bg .xx input{
+ box-sizing: border-box;
+ width: 100%;
+ border-radius: 20rpx;
+ border: 1rpx solid #f6f6f6;
+ padding: 10rpx;
+ height: 70rpx;
+ line-height: 70rpx;
+ font-size: 25rpx;
+ color: #999;
+}
+
+.jcdz_bg .tj_an{
+ padding: 0 48rpx;
+ margin-top: 115rpx;
+}
+.jcdz_bg .tj_an button{
+ font-size: 35rpx;
+ line-height: 100rpx;
+ color: #fff;
+ background: #fb595b;
+ border-radius: 40rpx;
+}
+.jcdz_bg .tj_an button::after{
+ border: none;
+}
+
+
+
+
+
+
+
+

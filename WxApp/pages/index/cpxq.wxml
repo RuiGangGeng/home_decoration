@@ -1,0 +1,40 @@
+<!--pages/index/cpxq.wxml 产品详情-->
+<view class="container">
+	<view class="cpxq">
+		<view class="banner">
+			<swiper class="swiper" autoplay="true" circular="true" bindchange="changeImg" >
+				<block wx:for="{{swiperList}}" wx:key >
+					<swiper-item class="item">
+						<image mode="aspectFill" class="slide-image" src="{{item.url}}" />
+					</swiper-item>
+				</block>
+			</swiper>
+			<span class="item-num" v-if="showLength>1">{{activeIndex+1}}/{{swiperList.length}}</span>
+		</view>
+		<view class="cpnr">
+			<text class="bt">现采摘露天卷心菜 纯绿色食物 让您体验新鲜直达的绿色美食餐桌上的绿色食品</text>
+			<text class="jg">￥20.0</text>
+			<text class="yj">￥34</text>
+   <view class="sc">
+    <image src="../../image/sc_anh.png"></image>
+    <image src="../../image/sc_an.png"></image>
+    <text>收藏</text>
+   </view>
+		</view>
+		<view class="cptu">
+			<view class="bt">
+				<image src="../../image/xqy_tb.png"></image>
+			</view>
+			<view class="nr">
+    <image src="../../image/cpxq_tu.png" mode="widthFix"></image>
+   </view>
+		</view>
+  <view class="foot">
+   <view class="jrgwc">
+    <image src="../../image/gwc_an.png"></image>
+    <text>加入购物车</text>
+   </view>
+   <view class="ljgm">立即购买</view>
+  </view>
+	</view>
+</view>

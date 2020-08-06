@@ -1,0 +1,5 @@
+<view class="container">
+    <view class="content">
+        <parser html="{{info.content}}" tag-style="{}" />
+    </view>
+</view>

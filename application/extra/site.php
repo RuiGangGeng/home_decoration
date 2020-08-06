@@ -1,7 +1,7 @@
 <?php
 
 return array (
-  'name' => '京小美',
+  'name' => '百万家园装修监理',
   'beian' => '',
   'cdnurl' => '',
   'version' => '1.0.1',
@@ -31,8 +31,8 @@ return array (
   'mail_smtp_pass' => 'password',
   'mail_verify_type' => '2',
   'mail_from' => '10000@qq.com',
-  'app_id' => 'wx2da77fb1c48677a4',
-  'app_secret' => '92f8c7da6d2682ce5d4fb68ab2988b87',
+  'app_id' => 'wxbb98e1aa25ea3d7c',
+  'app_secret' => '4c632970c789ac2fa43bd393ff04edf7',
   'pay_notify_url' => 'https://jxm.bowangyun.net/api/Pay/notifyPay',
   'refund_notify_url' => 'https://jxm.bowangyun.net/api/Pay/notifyRefund',
   'distance_limit' => '100000000',

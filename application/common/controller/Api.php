@@ -343,12 +343,17 @@ class Api
         if($double){
             $arr = explode(',',$url);
             foreach ($arr as $item=>&$value){
-                $value = config('upload')['cdnurl'].$value;
+                $value = Request::instance()->root(true).$value;
             }
             return $arr;
         }else{
-            return config('upload')['cdnurl'].$url;
+            return Request::instance()->root(true).$url;
         }
+    }
+
+    protected static function patch_cdn($content)
+    {
+        return str_replace('/uploads/',Request::instance()->root(true).'/uploads/',$content);
     }
 
 }

@@ -1,54 +1,55 @@
 {
-  "pages": [
-    "pages/index/index",
-    "pages/index/cpxq",
-    "pages/fl/index",
-    "pages/gwc/index",
-    "pages/wd/index",
-    "pages/wd/wdsc",
-    "pages/wd/wdzj",
-    "pages/wd/yfk",
-    "pages/wd/djc",
-    "pages/wd/dpj",
-    "pages/wd/pj",
-    "pages/wd/jcdz",
-    "pages/logs/logs"
-  ],
-  "window": {
-    "navigationBarBackgroundColor": "#fb595b",
-    "navigationBarTitleText": "百万家园装修监理",
-    "navigationBarTextStyle": "white"
-  },
-  "tabBar": {
-    "color": "#999",
-    "selectedColor": "#000",
-    "backgroundColor": "#fff",
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "首页",
-        "iconPath": "image/foot_sytb.jpg",
-        "selectedIconPath": "image/foot_sytbb.jpg"
-      },
-      {
-        "pagePath": "pages/fl/index",
-        "text": "分类",
-        "iconPath": "image/foot_fltb.jpg",
-        "selectedIconPath": "image/foot_fltbb.jpg"
-      },
-      {
-        "pagePath": "pages/gwc/index",
-        "text": "购物车",
-        "iconPath": "image/foot_gwctb.jpg",
-        "selectedIconPath": "image/foot_gwctbb.jpg"
-      },
-      {
-        "pagePath": "pages/wd/index",
-        "text": "我的",
-        "iconPath": "image/foot_wdtb.jpg",
-        "selectedIconPath": "image/foot_wdtbb.jpg"
-      }
-    ]
-  },
-  "sitemapLocation": "sitemap.json"
+    "pages": [
+        "pages/index/index",
+        "pages/index/cpxq",
+        "pages/fl/index",
+        "pages/gwc/index",
+        "pages/wd/index",
+        "pages/wd/wdsc",
+        "pages/wd/wdzj",
+        "pages/wd/yfk",
+        "pages/wd/djc",
+        "pages/wd/dpj",
+        "pages/wd/pj",
+        "pages/wd/jcdz",
+        "pages/logs/logs",
+        "pages/content/detail"
+    ],
+    "window": {
+        "navigationBarBackgroundColor": "#fb595b",
+        "navigationBarTitleText": "百万家园装修监理",
+        "navigationBarTextStyle": "white"
+    },
+    "tabBar": {
+        "color": "#999",
+        "selectedColor": "#000",
+        "backgroundColor": "#fff",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "首页",
+                "iconPath": "image/foot_sytb.png",
+                "selectedIconPath": "image/foot_sytbb.png"
+            },
+            {
+                "pagePath": "pages/fl/index",
+                "text": "分类",
+                "iconPath": "image/foot_fltb.png",
+                "selectedIconPath": "image/foot_fltbb.png"
+            },
+            {
+                "pagePath": "pages/gwc/index",
+                "text": "购物车",
+                "iconPath": "image/foot_gwctb.png",
+                "selectedIconPath": "image/foot_gwctbb.png"
+            },
+            {
+                "pagePath": "pages/wd/index",
+                "text": "我的",
+                "iconPath": "image/foot_wdtb.png",
+                "selectedIconPath": "image/foot_wdtbb.png"
+            }
+        ]
+    },
+    "sitemapLocation": "sitemap.json"
 }

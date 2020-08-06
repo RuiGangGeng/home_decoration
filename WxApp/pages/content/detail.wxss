@@ -1,0 +1,5 @@
+/* pages/content/detail.wxss */
+.container{
+    padding: 25rpx;
+    box-sizing: border-box;
+}

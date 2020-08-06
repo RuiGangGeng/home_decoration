@@ -66,7 +66,7 @@
                                 <div class="row">
                                     <div class="col-xs-3">
                                         <label>请选择主表</label>
-                                        {:build_select('table',$tableList,null,['class'=>'form-control selectpicker']);}
+                                        {:build_select('table',$tableList,null,['class'=>'form-control selectpicker', 'data-live-search'=>'true']);}
                                     </div>
                                     <div class="col-xs-3">
                                         <label>自定义控制器名</label>
@@ -374,7 +374,7 @@
     <div class="row relation-item">
         <div class="col-xs-2">
             <label>请选择关联表</label>
-            <select name="relation[<%=index%>][relation]" class="form-control relationtable"></select>
+            <select name="relation[<%=index%>][relation]" class="form-control relationtable" data-live-search="true"></select>
         </div>
         <div class="col-xs-2">
             <label>请选择关联类型</label>

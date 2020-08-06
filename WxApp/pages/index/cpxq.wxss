@@ -1,4 +1,7 @@
 /* pages/index/cpxq.wxss */
+.cptu{
+	margin-bottom: 10rpx;
+}
 .cpxq{
  padding-bottom: 108rpx;
 }

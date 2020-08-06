@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'Shop_id'     => '商家',
+    'Shop_id'     => '位置',
     'Name'        => '名称',
-    'Thumb_image' => '缩略图',
+    'Thumb_image' => '图标',
     'Weigh'       => '权重',
     'Status'      => '状态',
     'Status 0'    => '关闭',

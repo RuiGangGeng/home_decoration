@@ -1,3 +1,5 @@
 {
-  "navigationBarTitleText": "百万家园装修监理"
+  "navigationBarTitleText": "百万家园装修监理",
+  "backgroundTextStyle": "dark",
+  "enablePullDownRefresh": true
 }

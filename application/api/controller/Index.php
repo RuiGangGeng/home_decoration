@@ -73,19 +73,8 @@ class Index extends Api
      */
     public function getDiscount($category_id = false)
     {
-        $where = [];
-        if ($category_id) {
-            $where['category_id'] = $category_id;
-            $where['type_list']   = ['>', 2];
-        } else {
-            $where['type_list'] = ['<', 3];
-        }
-        $result = Db::name('content_discount')
-            ->where($where)
-            ->order('weigh', 'desc')
-            ->select();
+        $result = Db::name('content_discount')->find();
         if ($result) {
-            foreach ($result as &$item) $item['image'] = self::patch_oss($item['image']);
             $this->success('获取成功', $result);
         } else {
             $this->error('获取失败');
@@ -96,14 +85,34 @@ class Index extends Api
      * 获取行业分类
      * @throws DbException
      */
-    public function getCategories()
+    public function getCategories($shop_id = 1)
     {
-        $result = Db::name('category')
-            ->where(['type' => 'shop_type', 'status' => 'normal'])
+        $result = Db::name('shop_category')
+            ->where(['shop_id' => $shop_id, 'status' => '1'])
             ->order('weigh', 'desc')
             ->select();
         if ($result) {
-            foreach ($result as &$item) $item['image'] = self::patch_oss($item['image']);
+            foreach ($result as &$item) $item['thumb_image'] = self::patch_oss($item['thumb_image']);
+            $this->success('获取成功', $result);
+        } else {
+            $this->error('获取失败');
+        }
+    }
+
+    /**
+     * 获取行业分类
+     * @throws DbException
+     */
+    public function getVideos()
+    {
+        $result = Db::name('content_video')
+            ->order('weigh', 'desc')
+            ->select();
+        if ($result) {
+            foreach ($result as &$item) {
+                $item['image'] = self::patch_oss($item['image']);
+                $item['video_image'] = self::patch_oss($item['video_image']);
+            }
             $this->success('获取成功', $result);
         } else {
             $this->error('获取失败');

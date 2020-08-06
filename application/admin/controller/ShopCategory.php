@@ -48,13 +48,13 @@ class ShopCategory extends Backend
                 return $this->selectpage();
             }
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
-            $where_ = Session::get('admin.shop_id') != 0 ? ['shop_category.shop_id' => Session::get('admin.shop_id')] : [];
+            $where_ = [];
             $total  = $this->model
                 ->with(['shop'])
                 ->where($where)
                 ->where($where_)
                 ->order($sort, $order)
-                ->count('shop_category.id');
+                ->count();
 
             $list = $this->model
                 ->with(['shop'])

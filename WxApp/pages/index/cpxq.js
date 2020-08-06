@@ -1,97 +1,73 @@
 // pages/index/bkxq.js
+const util = require('../../utils/util.js')
+const user = require('../../utils/user.js')
+const storage = require('../../utils/storage.js')
+let app = getApp()
 Page({
 
-	/**
-	 * 页面的初始数据
-	 */
-	data: {
-		activeIndex: 0,
-		swiperList: [{
-			id: 0,
-			type: 'image',
-			url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg'
-		}, 
-		{
-			id: 1,
-			type: 'image',
-			url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84001.jpg',
-		},
-		{
-			 id: 2,
-			 type: 'image',
-				url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big39000.jpg'
-		 }, 
-		{
-			id: 3,
-			type: 'image',
-			url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg'
-	 }],
-	},
+    data: {
+        shop_id: 0,
+        activeIndex: 0,
+        swiperList: [],
+        info: null,
+        cart: null,
+        auth: false,
+        like: false,
+    },
 
-	/**
-	 * 生命周期函数--监听页面加载
-	 */
-	onLoad: function (options) {
+    onLoad: function (e) {
+        // 获取商品详情
+        this.setData({
+            shop_id: e.id
+        })
+        util.wxRequest("Good/getGood", {id: e.id}, res => {
+            this.setData({
+                swiperList: res.data.images,
+                info: res.data,
+            });
+        })
+        if (app.globalData.user_auth) {
+            this.getLike()
+        } else {
+            app.userAuthReadyCallback = this.getLike()
+        }
+    },
 
-	},
+    changeImg(e) {
+        let that = this
+        that.activeIndex = e.detail.current
+        this.setData({
+            activeIndex: e.detail.current
+        });
+    },
 
-	/**
-	 * 生命周期函数--监听页面初次渲染完成
-	 */
-	onReady: function () {
+    showLength() {
+        return this.swiperList.length
+    },
 
-	},
+    getLike() {
+        util.wxRequest("Index/like_", {shop_id: this.data.shop_id}, res => {
+            res.code === 200 && this.setData({like: true})
+        })
+    },
 
-	/**
-	 * 生命周期函数--监听页面显示
-	 */
-	onShow: function () {
+    like: function () {
+        let that = this
+        let like = this.data.like
+        if (app.globalData.user_auth) {
+            util.wxRequest("Index/like", {shop_id: that.data.shop_id}, res => {
+                if (res.code === 200) {
+                    wx.showToast({title: like ? "取消成功" : '收藏成功'})
+                    that.setData({like: !like})
+                }
+            })
+        } else {
+            this.setData({auth: true})
+        }
+    },
 
-	},
+    bindAuth() {
+        this.getLike()
+    }
 
-	/**
-	 * 生命周期函数--监听页面隐藏
-	 */
-	onHide: function () {
-
-	},
-
-	/**
-	 * 生命周期函数--监听页面卸载
-	 */
-	onUnload: function () {
-
-	},
-
-	/**
-	 * 页面相关事件处理函数--监听用户下拉动作
-	 */
-	onPullDownRefresh: function () {
-
-	},
-
-	/**
-	 * 页面上拉触底事件的处理函数
-	 */
-	onReachBottom: function () {
-
-	},
-
-	/**
-	 * 用户点击右上角分享
-	 */
-	onShareAppMessage: function () {
-
-	},
-	changeImg(e) {
-		let that = this
-		that.activeIndex = e.detail.current
-		this.setData({
-		activeIndex: e.detail.current
-		});
-		// console.log(that.activeIndex);
-		},
-		showLength() {
-		return this.swiperList.length
-		},
 })

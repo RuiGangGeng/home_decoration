@@ -25,8 +25,8 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                     [
                         {checkbox: true},
                         {field: 'id', title: __('Id')},
-                        {field: 'shop.name', title: __('Shop_id'), formatter: Table.api.formatter.search},
-                        {field: 'shopcategory.name', title: __('Shop_category_id'),formatter: Table.api.formatter.search},
+                        // {field: 'shop.name', title: __('Shop_id'), formatter: Table.api.formatter.search},
+                        // {field: 'shopcategory.name', title: __('Shop_category_id'),formatter: Table.api.formatter.search},
                         {field: 'name', title: __('Name')},
                         {field: 'original', title: __('Original'), operate:'BETWEEN'},
                         {field: 'price', title: __('Price'), operate:'BETWEEN'},

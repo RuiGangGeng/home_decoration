@@ -3,21 +3,21 @@
 	<view class="cpxq">
 		<view class="banner">
 			<swiper class="swiper" autoplay="true" circular="true" bindchange="changeImg" >
-				<block wx:for="{{swiperList}}" wx:key >
+				<block wx:for="{{swiperList}}" wx:key="index">
 					<swiper-item class="item">
-						<image mode="aspectFill" class="slide-image" src="{{item.url}}" />
+						<image mode="aspectFill" class="slide-image" src="{{item}}" />
 					</swiper-item>
 				</block>
 			</swiper>
 			<span class="item-num" v-if="showLength>1">{{activeIndex+1}}/{{swiperList.length}}</span>
 		</view>
 		<view class="cpnr">
-			<text class="bt">现采摘露天卷心菜 纯绿色食物 让您体验新鲜直达的绿色美食餐桌上的绿色食品</text>
-			<text class="jg">￥20.0</text>
-			<text class="yj">￥34</text>
+			<text class="bt">{{info.name}}</text>
+			<text class="jg">￥{{info.price}}</text>
+			<text class="yj">￥{{info.original}}</text>
    <view class="sc">
-    <image src="../../image/sc_anh.png"></image>
-    <image src="../../image/sc_an.png"></image>
+    <image bindtap="like" wx:if="{{!like}}" src="../../image/sc_anh.png"></image>
+    <image bindtap="like" wx:if="{{like}}" src="../../image/sc_an.png"></image>
     <text>收藏</text>
    </view>
 		</view>
@@ -26,7 +26,7 @@
 				<image src="../../image/xqy_tb.png"></image>
 			</view>
 			<view class="nr">
-    <image src="../../image/cpxq_tu.png" mode="widthFix"></image>
+				<parser html="{{info.content}}" tag-style="{}" />
    </view>
 		</view>
   <view class="foot">
@@ -37,4 +37,6 @@
    <view class="ljgm">立即购买</view>
   </view>
 	</view>
+	<!-- 授权登录 -->
+	<auth show="{{auth}}" bind:Auth="bindAuth"></auth>
 </view>

@@ -51,11 +51,8 @@ class ShopCategory extends Model
         return isset($list[$value]) ? $list[$value] : '';
     }
 
-
-
-
     public function shop()
     {
-        return $this->belongsTo('Shop', 'shop_id', 'id', [], 'LEFT')->setEagerlyType(0);
+        return $this->belongsTo('Category', 'shop_id', 'id', [], 'LEFT')->setEagerlyType(0);
     }
 }

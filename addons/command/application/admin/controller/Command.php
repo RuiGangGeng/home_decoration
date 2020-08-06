@@ -73,6 +73,10 @@ class Command extends Backend
      */
     public function get_controller_list()
     {
+        //搜索关键词,客户端输入以空格分开,这里接收为数组
+        $word = (array)$this->request->request("q_word/a");
+        $word = implode('', $word);
+
         $adminPath = dirname(__DIR__) . DS;
         $controllerDir = $adminPath . 'controller' . DS;
         $files = new \RecursiveIteratorIterator(
@@ -84,7 +88,12 @@ class Command extends Backend
                 $filePath = $file->getRealPath();
                 $name = str_replace($controllerDir, '', $filePath);
                 $name = str_replace(DS, "/", $name);
-                $list[] = ['id' => $name, 'name' => $name];
+                if (!preg_match("/(.*)\.php\$/", $name)) {
+                    continue;
+                }
+                if (!$word || stripos($name, $word) !== false) {
+                    $list[] = ['id' => $name, 'name' => $name];
+                }
             }
         }
         $pageNumber = $this->request->request("pageNumber");
@@ -98,8 +107,9 @@ class Command extends Backend
     public function detail($ids)
     {
         $row = $this->model->get($ids);
-        if (!$row)
+        if (!$row) {
             $this->error(__('No Results were found'));
+        }
         $this->view->assign("row", $row);
         return $this->view->fetch();
     }
@@ -110,8 +120,9 @@ class Command extends Backend
     public function execute($ids)
     {
         $row = $this->model->get($ids);
-        if (!$row)
+        if (!$row) {
             $this->error(__('No Results were found'));
+        }
         $result = $this->doexecute($row['type'], json_decode($row['params'], true));
         $this->success("", null, ['result' => $result]);
     }
@@ -160,22 +171,28 @@ class Command extends Backend
                     }
                 }
             }
-        } else if ($commandtype == 'menu') {
-            if (isset($params['allcontroller']) && $params['allcontroller']) {
-                $argv[] = "--controller=all-controller";
+        } else {
+            if ($commandtype == 'menu') {
+                if (isset($params['allcontroller']) && $params['allcontroller']) {
+                    $argv[] = "--controller=all-controller";
+                } else {
+                    foreach (explode(',', $params['controllerfile']) as $index => $param) {
+                        if ($param) {
+                            $argv[] = "--controller=" . substr($param, 0, -4);
+                        }
+                    }
+                }
             } else {
-                foreach (explode(',', $params['controllerfile']) as $index => $param) {
-                    if ($param) {
-                        $argv[] = "--controller=" . substr($param, 0, -4);
+                if ($commandtype == 'min') {
+
+                } else {
+                    if ($commandtype == 'api') {
+
+                    } else {
+
                     }
                 }
             }
-        } else if ($commandtype == 'min') {
-
-        } else if ($commandtype == 'api') {
-
-        } else {
-
         }
         if ($action == 'execute') {
             $result = $this->doexecute($commandtype, $argv);

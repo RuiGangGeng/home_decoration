@@ -14,7 +14,7 @@ use think\exception\DbException;
  */
 class Good extends Api
 {
-    protected $noNeedLogin = '';
+    protected $noNeedLogin = ['getGood','getGoods'];
     protected $noNeedRight = '*';
 
     protected function _initialize()
@@ -123,13 +123,9 @@ class Good extends Api
     public function getGoods($where = '{}')
     {
         $data         = json_decode(htmlspecialchars_decode($where), true);
-        $where_format = ['stock'=>['>',0]];
+        $where_format = [];
         foreach ($data as $item => $value) {
-            if($item!='stock'){
-                $where_format[$item] = $value;
-            }else{
-                unset($where_format['stock']);
-            }
+            $where_format[$item] = $value;
         }
 
         $result = Goods::where($where_format)
@@ -158,14 +154,12 @@ class Good extends Api
     {
         $result = Goods::get($id);
         if ($result) {
-            // 获取商家信息
-            $result['shop_info'] = \app\admin\model\Shop::get(['id'=>$result['shop_id']]);
-            $result['shop_info']['shopaddress'] = ShopAddress::get(['shop_id'=>$result['shop_id']]);
             if(!$back){
                 $result['status'] != 1 && $this->error('商品已下架');
             }
             $result['thumb_image'] = self::patch_oss($result['thumb_image']);
             $result['images']      = self::patch_oss($result['images'], true);
+            $result['content']     = self::patch_cdn($result['content']);
             $this->success('获取成功', $result);
         } else {
             $this->error('商品不存在，或已下架');

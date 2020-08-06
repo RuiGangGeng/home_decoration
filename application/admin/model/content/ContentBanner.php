@@ -47,6 +47,6 @@ class ContentBanner extends Model
 
     public function shop()
     {
-        return $this->belongsTo('app\admin\model\Shop', 'shop_id', 'id', [], 'LEFT')->setEagerlyType(0);
+        return $this->belongsTo('app\admin\model\Good', 'shop_id', 'id', [], 'LEFT')->setEagerlyType(0);
     }
 }

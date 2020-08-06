@@ -50,12 +50,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             Controller.api.bindevent();
         },
         edit: function () {
-            $("#c-good_id").data("params", function () {
-                return {custom: {shop_id:$("#c-shop_id").val()}};
-            });
-            $("#c-shop_id").on("change",function () {
-                $("#c-good_id").selectPageClear();
-            });
+            // $("#c-good_id").data("params", function () {
+            //     return {custom: {shop_id:$("#c-shop_id").val()}};
+            // });
+            // $("#c-shop_id").on("change",function () {
+            //     $("#c-good_id").selectPageClear();
+            // });
             Controller.api.bindevent();
         },
         api: {

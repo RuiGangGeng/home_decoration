@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "parser":"/components/parser.min/parser",
+    "auth": "/components/auth/index"
+  }
 }

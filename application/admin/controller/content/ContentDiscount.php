@@ -38,7 +38,7 @@ class ContentDiscount extends Backend
     public function index()
     {
         //当前是否为关联查询
-        $this->relationSearch = true;
+        $this->relationSearch = false;
         //设置过滤方法
         $this->request->filter(['strip_tags', 'trim']);
         if ($this->request->isAjax())
@@ -50,24 +50,24 @@ class ContentDiscount extends Backend
             }
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
             $total = $this->model
-                    ->with(['good','category','shop'])
+//                    ->with(['good','category','shop'])
                     ->where($where)
                     ->order($sort, $order)
                     ->count();
 
             $list = $this->model
-                    ->with(['good','category','shop'])
+//                    ->with(['good','category','shop'])
                     ->where($where)
                     ->order($sort, $order)
                     ->limit($offset, $limit)
                     ->select();
 
-            foreach ($list as $row) {
-                
-                $row->getRelation('good')->visible(['name']);
-                $row->getRelation('category')->visible(['name']);
-                $row->getRelation('shop')->visible(['name']);
-            }
+//            foreach ($list as $row) {
+//
+//                $row->getRelation('good')->visible(['name']);
+//                $row->getRelation('category')->visible(['name']);
+//                $row->getRelation('shop')->visible(['name']);
+//            }
             $list = collection($list)->toArray();
             $result = array("total" => $total, "rows" => $list);
 

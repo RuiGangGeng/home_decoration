@@ -4,31 +4,31 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
-		"scopeDataCheck": false,
-		"coverView": true,
+		"urlCheck": false,
 		"es6": true,
+		"enhance": false,
 		"postcss": true,
-		"compileHotReLoad": false,
 		"preloadBackgroundData": false,
 		"minified": true,
-		"autoAudits": false,
 		"newFeature": true,
-		"uglifyFileName": false,
-		"uploadWithSourceMap": true,
-		"useIsolateContext": true,
+		"coverView": true,
 		"nodeModules": false,
-		"enhance": false,
-		"useCompilerModule": true,
-		"userConfirmedUseCompilerModuleSwitch": false,
+		"autoAudits": false,
 		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
+		"uglifyFileName": false,
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"compileHotReLoad": false,
 		"babelSetting": {
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		}
+		},
+		"useIsolateContext": true,
+		"useCompilerModule": true,
+		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.7.0",
@@ -118,9 +118,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 8,
 					"name": "产品详情",
 					"pathName": "pages/index/cpxq",
+					"query": "id=40",
 					"scene": null
 				}
 			]

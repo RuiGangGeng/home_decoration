@@ -1,109 +1,131 @@
 /* pages/wd/index.wxss */
-.wd_bg .top{
- position: relative;
-}
-.wd_bg .top > image{
- width: 100%;
- height: 367rpx;
-}
-.wd_bg .top .xx{
- width: 100%;
- position: absolute;
- left: 0;
- top: 0;
- text-align: center;
-}
-.wd_bg .top .xx image{
- width: 190rpx;
- height: 190rpx;
- border-radius: 50%;
- margin-bottom: 30rpx;
-}
-.wd_bg .top .xx view{
- font-size: 28rpx;
- line-height: 38rpx;
- color: #fff;
+.wd_bg .top {
+    position: relative;
 }
 
-.wd_sb{
- position: relative;
- margin-top: -60rpx;
- padding: 0 25rpx;
+.wd_bg .top > image {
+    width: 100%;
+    height: 367rpx;
 }
-.wd_sb .wd_lj{
- background: #fff;
- box-shadow: 0rpx 1rpx 20rpx 5rpx rgba(153, 153, 153, 0.36);
- border-radius: 20rpx;
- padding: 30rpx 0;
- display: flex;
- flex-wrap: wrap;
- margin-bottom: 38rpx;
+
+.wd_bg .top .xx {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
-.wd_sb .wd_lj navigator{
- width: calc(50% - 1rpx);
- border-right: 2rpx solid #e4e4e4;
- padding: 10rpx 0 25rpx;
+
+.wd_bg .top .xx .image {
+    width: 190rpx;
+    height: 190rpx;
+    border-radius: 50%;
+    margin-bottom: 30rpx;
+    overflow: hidden;
 }
-.wd_sb .wd_lj navigator:last-child{
- border: none;
+
+.wd_bg .top .xx view {
+    font-size: 28rpx;
+    line-height: 38rpx;
+    color: #fff;
 }
-.wd_sb .wd_lj navigator .sl{
- text-align: center;
- font-size: 34rpx;
- line-height: 44rpx;
- color: #fa292f;
- margin-bottom: 10rpx;
+
+.wd_sb {
+    position: relative;
+    margin-top: -60rpx;
+    padding: 0 25rpx;
 }
-.wd_sb .wd_lj navigator .xx{
- display: flex;
- flex-wrap: wrap;
- justify-content: center;
- align-items: center;
+
+.wd_sb .wd_lj {
+    background: #fff;
+    box-shadow: 0rpx 1rpx 20rpx 5rpx rgba(153, 153, 153, 0.36);
+    border-radius: 20rpx;
+    padding: 30rpx 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 38rpx;
 }
-.wd_sb .wd_lj navigator .xx image{
- width: 40rpx;
- height: 40rpx;
+
+.wd_sb .wd_lj >view {
+    width: calc(50% - 1rpx);
+    border-right: 2rpx solid #e4e4e4;
+    padding: 10rpx 0 25rpx;
 }
-.wd_sb .wd_lj navigator .zj image{
- width: 33rpx;
- height: 40rpx;
+
+.wd_sb .wd_lj >view:last-child {
+    border: none;
 }
-.wd_sb .wd_lj navigator text{
- font-size: 30rpx;
- line-height: 40rpx;
- color: #333;
- margin-left: 24rpx;
+
+.wd_sb .wd_lj >view .sl {
+    text-align: center;
+    font-size: 34rpx;
+    line-height: 44rpx;
+    color: #fa292f;
+    margin-bottom: 10rpx;
 }
-.wd_sb .nav navigator{
- padding: 0 45rpx 0 30rpx;
- display: flex;
- flex-wrap: wrap;
- align-items: center;
- justify-content: space-between;
- box-shadow: 0rpx 1rpx 20rpx 5rpx rgba(153, 153, 153, 0.36);
- border-radius: 20rpx;
- margin-bottom: 20rpx;
+
+.wd_sb .wd_lj >view .xx {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
-.wd_sb .nav navigator > image{
- width: 14rpx;
- height: 25rpx;
+
+.wd_sb .wd_lj >view .xx image {
+    width: 40rpx;
+    height: 40rpx;
 }
-.wd_sb .nav navigator .xx{
- display: flex;
- flex-wrap: wrap;
- align-items: center;
+
+.wd_sb .wd_lj >view .zj image {
+    width: 33rpx;
+    height: 40rpx;
 }
-.wd_sb .nav navigator .xx view{
- width: 39rpx;
- height: 42rpx;
- display: flex;
- flex-wrap: wrap;
- align-items: center;
- justify-content: center;
+
+.wd_sb .wd_lj >view text {
+    font-size: 30rpx;
+    line-height: 40rpx;
+    color: #333;
+    margin-left: 24rpx;
 }
-.wd_sb .nav navigator .xx text{
- font-size: 28rpx;
- line-height: 100rpx;
- color: #333;
- margin-left: 25rpx;
+
+.wd_sb .nav >view {
+    padding: 0 45rpx 0 30rpx;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0rpx 1rpx 20rpx 5rpx rgba(153, 153, 153, 0.36);
+    border-radius: 20rpx;
+    margin-bottom: 20rpx;
+}
+
+.wd_sb .nav >view > image {
+    width: 14rpx;
+    height: 25rpx;
+}
+
+.wd_sb .nav >view .xx {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.wd_sb .nav >view .xx view {
+    width: 39rpx;
+    height: 42rpx;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.wd_sb .nav >view .xx text {
+    font-size: 28rpx;
+    line-height: 100rpx;
+    color: #333;
+    margin-left: 25rpx;
 }

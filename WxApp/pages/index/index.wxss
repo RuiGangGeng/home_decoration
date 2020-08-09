@@ -95,27 +95,27 @@
 .cp_list .cp:nth-child(3n){
   margin-right: 0;
 }
-.cp_list .cp navigator{
+.cp_list .cp >view{
   padding: 10rpx 10rpx 30rpx;
 }
-.cp_list .cp navigator image{
+.cp_list .cp >view image{
   width: 100%;
   height: 210rpx;
   margin-bottom: 15rpx;
 }
-.cp_list .cp navigator .bt{
+.cp_list .cp >view .bt{
   font-size: 24rpx;
   line-height: 34rpx;
   color: #333;
   margin-bottom: 15rpx;
 }
-.cp_list .cp navigator .jg{
+.cp_list .cp >view .jg{
   font-size: 30rpx;
   line-height: 40rpx;
   color: #fa292f;
   margin-bottom: 5rpx;
 }
-.cp_list .cp navigator .yj{
+.cp_list .cp >view .yj{
   font-size: 20rpx;
   line-height: 30rpx;
   color: #999;
@@ -127,6 +127,7 @@
   position: absolute;
   right: 25rpx;
   bottom: 20rpx;
+  padding: unset;
 }
 .cp_list .cp .gwc_an image{
   width: 100%;

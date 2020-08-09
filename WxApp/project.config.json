@@ -27,12 +27,12 @@
 			"outputPath": ""
 		},
 		"useIsolateContext": true,
-		"useCompilerModule": true,
+		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.7.0",
-	"appid": "wxbb98e1aa25ea3d7c",
+	"appid": "wx2e713ea8cdc377e8",
 	"projectname": "%E7%99%BE%E4%B8%87%E5%AE%B6%E5%9B%AD",
 	"isGameTourist": false,
 	"simulatorType": "wechat",
@@ -122,6 +122,27 @@
 					"name": "产品详情",
 					"pathName": "pages/index/cpxq",
 					"query": "id=40",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/wd/yfk",
+					"pathName": "pages/wd/yfk",
+					"query": "id=40",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/wd/info",
+					"pathName": "pages/wd/info",
+					"query": "?type=user&id=12",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/wd/pj",
+					"pathName": "pages/wd/pj",
+					"query": "id=8",
 					"scene": null
 				}
 			]

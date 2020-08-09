@@ -29,6 +29,7 @@ class Order extends Backend
         parent::_initialize();
         $this->model = new \app\admin\model\Order;
         $this->view->assign("statusList", $this->model->getStatusList());
+        $this->view->assign("root", explode('admin.php',$this->request->root(true))[0]);
     }
 
     /**

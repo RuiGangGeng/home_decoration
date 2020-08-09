@@ -1,37 +1,22 @@
 <!--pages/wd/dpj.wxml 待评价-->
 <view class="container">
- <view class="cont_bg">
-  <view class="list">
-   <view class="nr">
-    <navigator>
-     <view class="tu">
-      <image src="../../image/cp_tu.png"></image>
-     </view>
-     <view class="xx">
-      <view class="bt">基础验收</view>
-      <view class="jg">¥ 1880.80</view>
-      <view class="yj">¥ 2880.80</view>
-     </view>
-    </navigator>
-    <navigator url="pj" class="pj_an">
-     <image src="../../image/pj_tb.png"></image>
-    </navigator>
-   </view>
-   <view class="nr">
-    <navigator>
-     <view class="tu">
-      <image src="../../image/cp_tu.png"></image>
-     </view>
-     <view class="xx">
-      <view class="bt">基础验收</view>
-      <view class="jg">¥ 1880.80</view>
-      <view class="yj">¥ 2880.80</view>
-     </view>
-    </navigator>
-    <navigator url="pj" class="pj_an">
-     <image src="../../image/pj_tb.png"></image>
-    </navigator>
-   </view>
-  </view>
- </view>
+    <view class="cont_bg">
+        <view class="list">
+            <view class="nr" wx:for="{{list}}" wx:key="index">
+                <navigator url="#">
+                    <view class="tu">
+                        <image src="{{item.ordergood[0].thumb_image}}"></image>
+                    </view>
+                    <view class="xx">
+                        <view class="bt">{{item.ordergood[0].name}}</view>
+                        <view class="jg">¥ {{item.ordergood[0].original}}</view>
+                        <view class="yj">¥ {{item.ordergood[0].price}}</view>
+                    </view>
+                </navigator>
+                <navigator url="pj?id={{item.id}}" class="pj_an">
+                    <image src="../../image/pj_tb.png"></image>
+                </navigator>
+            </view>
+        </view>
+    </view>
 </view>

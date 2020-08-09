@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": ""
+  "navigationBarTitleText": "",
+  "usingComponents": {
+    "auth": "/components/auth/index"
+  }
 }

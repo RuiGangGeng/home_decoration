@@ -1,7 +1,9 @@
 // 自定义设置缓存（带有效期）
-const setStorage = (key, value) => {
+const setStorage = (key, value, time_ = false) => {
     //获取缓存有效期
     let time = getApp().globalData.storage_time
+    if (time_) time = time_
+
     let seconds = parseInt(time)
     if (seconds > 0) {
         wx.setStorageSync(key, value)
@@ -20,6 +22,7 @@ const getStorage = (key) => {
     if (timestamp < destroy_time) {
         return wx.getStorageSync(key)
     } else {
+        removeStorage(key)
         return false
     }
 }

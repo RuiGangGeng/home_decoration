@@ -1,64 +1,86 @@
 <!--pages/gwc/index.wxml 购物车-->
 <view class="container">
     <view class="gwc_bg">
+
         <view class="wsj" wx:if="{{goods.length===0}}">
             <image src="../../image/gwc_wsj.png"></image>
         </view>
-        <navigator url="../wd/jcdz" class="wdz" wx:if="{{address===null}}">
+
+        <navigator url="../wd/jcdz" class="wdz" wx:if="{{address===null&&goods.length!==0}}">
             <image src="../../image/tj_tb.png"></image>
             <text>请添加检查地址</text>
         </navigator>
-        <view class="dz" wx:if="{{address}}">
+
+        <navigator class="dz" wx:if="{{address&&goods.length!==0}}" url="../wd/address/index">
             <view class="sjr">
                 <view>
                     <image src="../../image/dz_tb.png"></image>
-                    <text>王尼玛</text>
-                    <text>1999919191</text>
+                    <text>{{address.contact}}</text>
+                    <text>{{address.phone}}</text>
                 </view>
                 <image src="../../image/jt_lj.png"></image>
             </view>
-            <view class="xx">拉开距离空间拉屎看得见阿来得及拉速度快结案率卡德加</view>
-        </view>
-        <view class="list">
-            <view class='goods' wx:for="{{goods}}" wx:key="goods">
+            <view class="xx">{{address.address}}{{address.doorplate}}</view>
+        </navigator>
+
+        <view class="list" wx:for="{{goods}}" wx:key="goods_">
+            <view class='goods' style="margin-bottom: {{item.goods.length===0&&'30rpx'}};border-top-left-radius: {{item.goods.length===0&&'40rpx'}};border-top-right-radius:{{item.goods.length===0&&'40rpx'}};">
                 <view class='goods-check'>
-                    <icon wx:if="{{item.selected}}" type="success" color="#fb595b" bindtap="change"
-                          data-index="{{index}}"/>
+                    <icon wx:if="{{item.selected}}" type="success" color="#fb595b" bindtap="change" data-index="{{index}}"/>
                     <icon wx:else type="circle" bindtap="change" data-index="{{index}}"/>
                 </view>
-                <view class='goods-details'>
+                <view class='goods-details' bindtap="go" data-id="{{item.id}}">
                     <view class='goods-img'>
-                        <image src='{{item.img}}' mode="aspectFill"></image>
+                        <image src='{{item.thumb_image}}' mode="aspectFill"></image>
                     </view>
                     <view class='goods-title'>
-                        <view class='goods-name'>{{item.goodsName}}</view>
-                        <view class='goods-pri'>¥{{item.goodsPrice}}</view>
-                        <view class='goods-yj'>{{item.goodsYj}}</view>
+                        <view class='goods-name'>{{item.name}}</view>
+                        <view class='goods-pri'>¥{{item.price}}</view>
+                        <view class='goods-yj'>{{item.original}}</view>
                     </view>
                 </view>
             </view>
-            <view class='goods-footer'>
-                <view class="allSelect">
-                    <icon wx:if="{{selectAllStatus}}" type="success" color="#fb595b" bindtap="selectAll" class='allse'/>
-                    <icon wx:else type="circle" bindtap="selectAll" class='allse'/>
-                    <view class="allSelect-text">全选</view>
+            <view class="goods_" wx:for="{{item.goods}}" wx:key="index_" wx:for-item="i" wx:for-index="index_">
+                <view class='goods-check'>
+                    <icon wx:if="{{i.selected}}" type="success" color="#fb595b" bindtap="change_" data-index="{{index_}}" data-parent="{{index}}"/>
+                    <icon wx:else type="circle" bindtap="change_" data-index="{{index_}}" data-parent="{{index}}"/>
                 </view>
-                <view class="hs">
-                    <text class='sum'>合计：¥{{totalPrice}}</text>
-                    <view class='settlement'>去结算</view>
+                <view class='goods-details'>
+                    <view class='goods-img'>
+                        <image src='{{i.thumb_image}}' mode="aspectFill"></image>
+                    </view>
+                    <view class='goods-title' bindtap="go" data-id="{{i.id}}">
+                        <view class='goods-name'>{{i.name}}</view>
+                        <view class='goods-pri'>¥{{i.price}}</view>
+                        <view class='goods-yj'>{{i.original}}</view>
+                    </view>
                 </view>
+            </view>
+        </view>
+
+        <view class='goods-footer' wx:if="{{goods.length>0}}">
+            <view class="allSelect">
+                <icon wx:if="{{selectAllStatus}}" type="success" color="#fb595b" bindtap="selectAll" class='allse'/>
+                <icon wx:else type="circle" bindtap="selectAll" class='allse'/>
+                <view class="allSelect-text">全选</view>
+            </view>
+            <view class="hs">
+                <text class='sum'>合计：¥{{totalPrice}}</text>
+                <view class='settlement' bindtap="refund">去结算</view>
             </view>
         </view>
 
         <view class="message_" wx:if="{{refund}}">
             <view class="message-wrapper box-shadow">
-                <view class="message-title">请输入原由</view>
-                <textarea class="message-box box-shadow" fixed="true" bindinput="bindInput" data-field="refund_refuse_msg" value="{{param.refund_refuse_msg}}"></textarea>
+                <view class="message-title">订单留言</view>
+                <textarea class="message-box box-shadow" fixed="true" bindinput="bindInput" data-field="refund_refuse_msg" value="{{param.refund_refuse_msg}}">请输入您的留言信息，可不填</textarea>
                 <view class="message-operate">
-                    <button class="btn btn-default btn-small message-confirm btn-green" bindtap="confirmRefund">确定</button>
+                    <button class="btn btn-default btn-small message-confirm btn-green" bindtap="sub">确定</button>
                 </view>
             </view>
         </view>
 
     </view>
+    <!-- 授权登录 -->
+    <auth show="{{auth}}" bind:Auth="bindAuth"></auth>
 </view>

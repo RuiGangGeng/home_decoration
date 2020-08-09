@@ -130,7 +130,7 @@ class Good extends Api
 
         $result = Goods::where($where_format)
             ->order('weigh', 'desc')
-            ->field('id,status,shop_id,shop_category_id,name,original,price,stock,thumb_image,images,short')
+            ->field('id,status,shop_id,good_ids,shop_category_id,name,original,price,stock,thumb_image,images,short')
             ->paginate(null, false, $this->paginate)
             ->each(function ($item) {
                 $item['thumb_image'] = self::patch_oss($item['thumb_image']);

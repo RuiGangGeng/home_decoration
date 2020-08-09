@@ -5,7 +5,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             let shop_commission = $("#shop_commission").data("commission")
             // 初始化表格参数配置
             Table.api.init({
-                showFooter:true,
+                // showFooter:true,
                 extend: {
                     index_url: 'order/index' + location.search,
                     add_url: 'order/add',
@@ -24,19 +24,13 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 sortName: 'id',
                 columns: [
                     [
-                        {checkbox: true,footerFormatter:function(data){return '总计';}},
+                        {checkbox: true},
                         {field: 'id', title: __('Id')},
-                        {field: 'ordershop.name', title: __('Shop_id'),operate:'LIKE'},
+                        // {field: 'ordershop.name', title: __('Shop_id'),operate:'LIKE'},
                         {field: 'numbers', title: __('Numbers'),operate:'LIKE'},
                         {field: 'transaction', title: __('Transaction'),operate:'LIKE'},
                         {field: 'total_counts', title: __('total_counts')},
-                        {field: 'total_price', title: __('total_price'),footerFormatter:function(data){
-                                let field = this.field;
-                                let total_sum = data.reduce(function (sum, row) {
-                                    return (sum) + (parseFloat(row[field]) || 0);
-                                }, 0);
-                                return (total_sum*shop_commission).toFixed(2);
-                         }},
+                        {field: 'total_price', title: __('total_price'),},
                         {field: 'orderaddress.contact', title: __('Orderaddress.contact')},
                         {field: 'orderaddress.phone', title: __('Orderaddress.phone'),operate:'LIKE'},
                         {field: 'orderaddress.address',title: __('Orderaddress.address'),},

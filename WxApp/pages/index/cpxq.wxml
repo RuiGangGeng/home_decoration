@@ -1,42 +1,42 @@
 <!--pages/index/cpxq.wxml 产品详情-->
 <view class="container">
-	<view class="cpxq">
-		<view class="banner">
-			<swiper class="swiper" autoplay="true" circular="true" bindchange="changeImg" >
-				<block wx:for="{{swiperList}}" wx:key="index">
-					<swiper-item class="item">
-						<image mode="aspectFill" class="slide-image" src="{{item}}" />
-					</swiper-item>
-				</block>
-			</swiper>
-			<span class="item-num" v-if="showLength>1">{{activeIndex+1}}/{{swiperList.length}}</span>
-		</view>
-		<view class="cpnr">
-			<text class="bt">{{info.name}}</text>
-			<text class="jg">￥{{info.price}}</text>
-			<text class="yj">￥{{info.original}}</text>
-   <view class="sc">
-    <image bindtap="like" wx:if="{{!like}}" src="../../image/sc_anh.png"></image>
-    <image bindtap="like" wx:if="{{like}}" src="../../image/sc_an.png"></image>
-    <text>收藏</text>
-   </view>
-		</view>
-		<view class="cptu">
-			<view class="bt">
-				<image src="../../image/xqy_tb.png"></image>
-			</view>
-			<view class="nr">
-				<parser html="{{info.content}}" tag-style="{}" />
-   </view>
-		</view>
-  <view class="foot">
-   <view class="jrgwc">
-    <image src="../../image/gwc_an.png"></image>
-    <text>加入购物车</text>
-   </view>
-   <view class="ljgm">立即购买</view>
-  </view>
-	</view>
-	<!-- 授权登录 -->
-	<auth show="{{auth}}" bind:Auth="bindAuth"></auth>
+    <view class="cpxq">
+        <view class="banner">
+            <swiper class="swiper" autoplay="true" circular="true" bindchange="changeImg">
+                <block wx:for="{{swiperList}}" wx:key="index">
+                    <swiper-item class="item">
+                        <image mode="aspectFill" class="slide-image" src="{{item}}"/>
+                    </swiper-item>
+                </block>
+            </swiper>
+            <text class="item-num" v-if="showLength>1">{{activeIndex + 1}}/{{swiperList.length}}</text>
+        </view>
+        <view class="cpnr">
+            <text class="bt">{{info.name}}</text>
+            <text class="jg">￥ {{info.price}}</text>
+            <text class="yj">￥ {{info.original}}</text>
+            <view class="sc">
+                <image bindtap="like" wx:if="{{!like}}" src="../../image/sc_anh.png"></image>
+                <image bindtap="like" wx:if="{{like}}" src="../../image/sc_an.png"></image>
+                <text>收藏</text>
+            </view>
+        </view>
+        <view class="cptu">
+            <view class="bt">
+                <image src="../../image/xqy_tb.png"></image>
+            </view>
+            <view class="nr">
+                <parser html="{{info.content}}" tag-style="{}"/>
+            </view>
+        </view>
+        <view class="foot">
+            <view class="jrgwc" bindtap="addCart">
+                <image src="../../image/gwc_an.png"></image>
+                <text>加入购物车</text>
+            </view>
+            <view class="ljgm" bindtap="buy">立即购买</view>
+        </view>
+    </view>
+    <!-- 授权登录 -->
+    <auth show="{{auth}}" bind:Auth="bindAuth"></auth>
 </view>

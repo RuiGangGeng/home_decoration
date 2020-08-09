@@ -6,6 +6,7 @@ namespace app\api\controller;
 
 use app\admin\model\OrderGood;
 use app\api\library\WxPay;
+use app\api\model\UserAddress;
 use app\common\controller\Api;
 use app\admin\model\Shop;
 use app\admin\model\Order;
@@ -38,33 +39,23 @@ class Pay extends Api
      * @throws DbException
      * @throws Exception
      */
-    public function pay($shop_id, $address_id, $message = '')
+    public function pay($good_ids, $address_id, $refund_refuse_msg = '')
     {
         $user_id = $this->auth->id;
-        // 校验商家
-        $find_shop = Shop::get(['id' => $shop_id, 'status' => '1']);
-        !$find_shop && $this->error('商家被禁用');
 
         // 校验商品和库存 （从购物车里面取出来）
-        $find_good = Db::name('user_cart')
-            ->alias('c')
-            ->join('good g', 'g.id = c.good_id')
-            ->where(['c.shop_id' => $shop_id, 'c.user_id' => $user_id, 'c.select_' => '1'])
-            ->field('c.*,g.stock,g.price,g.name,g.original,g.deletetime,g.status,g.thumb_image,g.short')
+        $find_good = Db::name('good')
+            ->whereIn('id',$good_ids)
             ->select();
 
-        if (count($find_good) == 0) {
-            $this->error('此订单内没有商品', ['type' => 'ORDER_NO_GOOD']);
-        }
         foreach ($find_good as $item) {
-            $item['deletetime'] != null && $this->error($item['name'] . '已经被商家删除');
-            $item['status'] != '1' && $this->error($item['name'] . '已经被商家下架');
-            $item['stock'] < $item['number'] && $this->error($item['name'] . '商品库存不足');
+            $item['deletetime'] != null && $this->error($item['name'] . '已经被平台删除');
+            $item['status'] != '1' && $this->error($item['name'] . '已经被平台下架');
         }
 
         // 校验收货地址
-        $find_address = (new Address())->checkAddress($address_id, $shop_id);
-        !$find_address && $this->error('超出了商家的配送范围,请更换收货地址', ['type' => 'NO_RIGHT_ADDRESS']);
+         $find_address = UserAddress::get($address_id);
+        // !$find_address && $this->error('超出了商家的配送范围,请更换收货地址', ['type' => 'NO_RIGHT_ADDRESS']);
 
         // 生成订单
         Db::startTrans();
@@ -76,22 +67,21 @@ class Pay extends Api
             $notify_url = config('site.pay_notify_url');
             // 计算价格 和 拼接名称
             foreach ($find_good as $item) {
-                $price  += $item['price'] * $item['number'];
-                $counts += $item['number'];
+                $price  += $item['price'] * 1;
+                $counts ++;
                 mb_strlen($body) < 20 && $body = $body . $item['name'] . ',';
             }
             $body  = mb_substr($body, 0, mb_strlen($body) - 1);
-            $body  .= "等{$counts}件商品";
+            $body  .= "等{$counts}项服务";
             $price = round($price, 2);
             // 生成微信支付数据
-            $result = $this->instance->create($open_id, $body, $price, $notify_url);
+            $result = $this->instance->create($open_id, $body, 0.01, $notify_url);
 
             // 添加订单 获取主键：id
             $order['user_id']      = $user_id;
-            $order['shop_id']      = $shop_id;
             $order['numbers']      = $this->instance->out_trade_no;
             $order['createtime']   = $order['updatetime'] = time();
-            $order['message']      = $message;
+            $order['message']      = $refund_refuse_msg;
             $order['total_counts'] = $counts;
             $order['total_price']  = $price;
             $order['body']         = $body;
@@ -107,18 +97,16 @@ class Pay extends Api
             // 添加订单产品关联
             foreach ($find_good as $item) {
                 $insert_good['order_id']    = $order_id;
-                $insert_good['good_id']     = $item['good_id'];
+//                $insert_good['good_id']     = $item['good_id'];
                 $insert_good['name']        = $item['name'];
                 $insert_good['thumb_image'] = $item['thumb_image'];
                 $insert_good['short']       = $item['short'];
                 $insert_good['original']    = $item['original'];
                 $insert_good['price']       = $item['price'];
-                $insert_good['counts']      = $item['number'];
+//                $insert_good['counts']      = $item['number'];
                 Db::name('order_good')->insert($insert_good);
             }
 
-            // 清除购物车商品
-            Db::name('user_cart')->where(['shop_id' => $shop_id, 'user_id' => $user_id, 'select_' => '1'])->delete();
             Db::commit();
         } catch (DbException $e) {
             Db::rollback();

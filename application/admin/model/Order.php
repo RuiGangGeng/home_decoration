@@ -32,7 +32,7 @@ class Order extends Model
     
     public function getStatusList()
     {
-        return ['-1' => __('Status -1'),'0' => __('Status 0'), '1' => __('Status 1'), '2' => __('Status 2'), '3' => __('Status 3'), '4' => __('Status 4'), '5' => __('Status 5'), '6' => __('Status 6'),'7' => __('Status 7'),'8' => __('Status 8'),'9' => __('Status 9'),'10' => __('Status 10')];
+        return ['-1' => __('Status -1'),'0' => __('Status 0'), '1' => __('Status 1'), '3' => __('Status 3'), '4' => __('Status 4')];
     }
 
 

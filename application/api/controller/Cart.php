@@ -131,20 +131,49 @@ class Cart extends Api
      * @throws DbException
      * @throws Exception
      */
+//    public function getCarts($shop_id)
+//    {
+//        $user_id = $this->auth->id;
+//        $result  = Db::name('user_cart')
+//            ->alias('c')
+//            ->join('good g', 'g.id = c.good_id')
+//            ->field('c.*,g.price,g.thumb_image,g.name,g.original,g.stock')
+//            ->where(['c.user_id' => $user_id, 'c.shop_id' => $shop_id])
+//            ->select();
+//
+//        if ($result) {
+//            foreach ($result as &$item) {
+//                unset($item['user_id']);
+//                $item['thumb_image'] = self::patch_oss($item['thumb_image']);
+//            }
+//            $this->success('获取成功', $result);
+//        } else {
+//            $this->error('获取失败', []);
+//        }
+//    }
+
+
+    /**
+     * 获取购物车
+     * @param integer $shop_id 商家主键：id
+     * @throws DbException
+     * @throws Exception
+     */
     public function getCarts($shop_id)
     {
         $user_id = $this->auth->id;
-        $result  = Db::name('user_cart')
-            ->alias('c')
-            ->join('good g', 'g.id = c.good_id')
-            ->field('c.*,g.price,g.thumb_image,g.name,g.original,g.stock')
-            ->where(['c.user_id' => $user_id, 'c.shop_id' => $shop_id])
-            ->select();
-
+        $shop_id = json_decode(html_entity_decode($shop_id));
+        $result  = [];
+        foreach ($shop_id as $item) {
+            $result[] = Db::name('good')
+                ->whereIn('id', $item)
+                ->select();
+        }
         if ($result) {
             foreach ($result as &$item) {
-                unset($item['user_id']);
-                $item['thumb_image'] = self::patch_oss($item['thumb_image']);
+                foreach ($item as &$items) {
+                    $items['thumb_image'] = self::patch_oss($items['thumb_image']);
+                }
             }
             $this->success('获取成功', $result);
         } else {

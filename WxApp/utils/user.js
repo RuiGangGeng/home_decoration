@@ -48,12 +48,17 @@ const wxAuthUserInfo = (url, e = '') => {
                         success: function (res) {
                             param.nickname = res.userInfo.nickName
                             param.avatar = res.userInfo.avatarUrl
-                            util.wxRequest(url, param, res => {
-                                if (res.code === 200) {
-                                    getApp().globalData.user_auth = true
-                                    getApp().userAuthReadyCallback && getApp().userAuthReadyCallback()
-                                }
-                            })
+                            if(storage.getStorage('token')){
+                                getApp().globalData.user_auth = true
+                                getApp().userAuthReadyCallback && getApp().userAuthReadyCallback()
+                            }else {
+                                util.wxRequest(url, param, res => {
+                                    if (res.code === 200) {
+                                        getApp().globalData.user_auth = true
+                                        getApp().userAuthReadyCallback && getApp().userAuthReadyCallback()
+                                    }
+                                })
+                            }
                         }
                     })
                 }

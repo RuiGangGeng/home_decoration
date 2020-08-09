@@ -1,3 +1,6 @@
 {
+  "usingComponents": {
+    "auth": "/components/auth/index"
+  },
   "navigationBarTitleText": "购物车"
 }

@@ -5,6 +5,8 @@ namespace app\api\controller;
 use app\common\controller\Api;
 use fast\Http;
 use app\common\model\User as Users;
+use think\Db;
+use think\Exception;
 use think\exception\DbException;
 
 /**
@@ -60,7 +62,7 @@ class User extends Api
             } else {
                 $this->error($this->auth->getError());
             }
-        }else{
+        } else {
             $this->error('请检查小程序配置');
         }
 
@@ -71,7 +73,7 @@ class User extends Api
      * @param string $nickname 昵称
      * @param string $avatar 头像地址
      */
-    public function wxAppAuthUser($nickname,$avatar)
+    public function wxAppAuthUser($nickname, $avatar)
     {
 
         $data = [
@@ -79,23 +81,67 @@ class User extends Api
             'avatar'     => $avatar,
             'updatetime' => date("Y-m-d H:i:s", time())
         ];
-        Users::update($data,['id'=>$this->auth->id]);
+        Users::update($data, ['id' => $this->auth->id]);
         $this->success("更新用户信息成功");
     }
 
     /**
      * 获取个人信息
+     * @throws Exception
      */
     public function getUserInfo()
     {
         $user = $this->auth->getUser();
-        $user->visible(['mobile','nickname','id','level','avatar','username','is_extension']);
-        $shop = \app\admin\model\Shop::get(['user_id'=>$this->auth->id]);
-        $user = $user->toArray();
-        $user['shop'] = $shop?$shop['status']:false;
-        $user['shop_id'] = $shop?$shop['id']:false;
-        $user['review'] = config('site.review')==1;
-        $this->success('获取成功',$user);
+        $user->visible(['mobile', 'nickname', 'id', 'level', 'avatar', 'username', 'is_extension']);
+        $user->append(['like', 'view']);
+        $user->like = Db::name('like')->where(['user_id' => $user['id']])->count('id');
+        $user->view = Db::name('view')->where(['user_id' => $user['id']])->count('id');
+        $this->success('获取成功', $user);
     }
 
+    /**
+     * 获取我的收藏
+     * @throws DbException
+     */
+    public function getLikes()
+    {
+        $result = Db::name('like')
+            ->alias('l')
+            ->where(['l.user_id' => $this->auth->id])
+            ->join('good g', 'g.id = l.shop_id')
+            ->field('l.*,g.name,g.original,g.price,g.thumb_image')
+            ->paginate(null, false, $this->paginate)
+            ->each(function ($item) {
+                $item['thumb_image'] = self::patch_oss($item['thumb_image']);
+                return $item;
+            });
+        if ($result) {
+            $this->success('获取成功', $result);
+        } else {
+            $this->success('暂无记录');
+        }
+    }
+
+    /**
+     * 获取我的足迹
+     * @throws DbException
+     */
+    public function getViews()
+    {
+        $result = Db::name('view')
+            ->alias('l')
+            ->where(['l.user_id' => $this->auth->id])
+            ->join('good g', 'g.id = l.shop_id')
+            ->field('l.*,g.name,g.original,g.price,g.thumb_image')
+            ->paginate(null, false, $this->paginate)
+            ->each(function ($item) {
+                $item['thumb_image'] = self::patch_oss($item['thumb_image']);
+                return $item;
+            });
+        if ($result) {
+            $this->success('获取成功', $result);
+        } else {
+            $this->success('暂无记录');
+        }
+    }
 }

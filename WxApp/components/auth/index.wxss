@@ -40,7 +40,7 @@
 }
 
 .login button {
-    background: #39a336;
+    background: #fb595b;
     width: 80%;
     margin: auto;
     color: white;

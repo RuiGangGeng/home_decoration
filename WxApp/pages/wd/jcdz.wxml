@@ -1,25 +1,28 @@
 <!--pages/wd/jcdz.wxml 检查地址-->
 <view class="container">
- <view class="jcdz_bg">
-  <view class="bt">添加检查地址</view>
-  <view class="xx">
-   <view>联系人</view>
-   <input type="text"></input>
-  </view>
-  <view class="xx">
-   <view>联系电话</view>
-   <input type="number"></input>
-  </view>
-  <view class="xx">
-   <view>门牌号</view>
-   <input type="text"></input>
-  </view>
-  <view class="xx">
-   <view>详细地址</view>
-   <input type="text" placeholder-class="phcolor" placeholder="例：如道路，小区，楼栋号，单元室等"></input>
-  </view>
-  <view class="tj_an">
-   <button>提交</button>
-  </view>
- </view>
+    <view class="jcdz_bg">
+        <view class="bt">添加检查地址</view>
+        <view class="xx">
+            <view>联系人</view>
+            <input type="text" maxlength="6" placeholder="联系人姓名" bindinput="bindInput" data-field="contact" value="{{param.contact}}"></input>
+        </view>
+        <view class="xx">
+            <view>联系电话</view>
+            <input type="number" maxlength="11" placeholder="联系人手机号" bindinput="bindInput" data-field="phone" value="{{param.phone}}"></input>
+        </view>
+        <view class="xx">
+            <view>门牌号</view>
+            <input type="text" maxlength="15" placeholder="补充小区楼层门牌号等" bindinput="bindInput" data-field="doorplate" value="{{param.doorplate}}"></input>
+        </view>
+        <view class="xx">
+            <view>详细地址</view>
+            <input wx:if="{{auth}}" type="text" placeholder="请填写" bindfocus="location" bindinput="bindInput" data-field="address" value="{{param.address}}"></input>
+            <button wx:if="{{!auth}}" open-type="openSetting" class="btn btn-none" bindopensetting="location">
+                点击授权位置信息
+            </button>
+        </view>
+        <view class="tj_an">
+            <button bind:tap="submit" disabled="{{onAsync}}">提交</button>
+        </view>
+    </view>
 </view>

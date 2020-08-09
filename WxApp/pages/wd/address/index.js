@@ -15,7 +15,7 @@ Page({
     },
 
     onLoad: function (options) {
-        this.setData({type: options.type, shop_id: options.shop_id})
+        // this.setData({type: options.type, shop_id: options.shop_id})
     },
 
     onShow: function () {
@@ -71,25 +71,27 @@ Page({
     // 选择收货地址 判断配送距离
     checkAddress: function (e) {
         let that = this;
-        if (that.data.type === '0') return false
+        // if (that.data.type === '0') return false
         let id = e.currentTarget.dataset.id;
-        util.wxRequest('Address/checkAddress', {address_id: id, shop_id: that.data.shop_id}, res => {
-            if (res.code === 200) {
-                storage.setStorage('generateOrder_address_id', id)
-                wx.navigateBack()
-            } else {
-                wx.showModal({
-                    title: '温馨提示',
-                    content: res.msg,
-                    showCancel: false,
-                })
-            }
-        })
+        storage.setStorage('generateOrder_address_id', id)
+        wx.navigateBack()
+        // util.wxRequest('Address/checkAddress', {address_id: id, shop_id: that.data.shop_id}, res => {
+        //     if (res.code === 200) {
+        //         storage.setStorage('generateOrder_address_id', id)
+        //         wx.navigateBack()
+        //     } else {
+        //         wx.showModal({
+        //             title: '温馨提示',
+        //             content: res.msg,
+        //             showCancel: false,
+        //         })
+        //     }
+        // })
     },
 
     // 编辑地址
     editAddress: function (e) {
-        wx.navigateTo({url: '/pages/mine/address/add?id=' + e.currentTarget.dataset.id})
+        wx.navigateTo({url: '/pages/wd/jcdz?id=' + e.currentTarget.dataset.id})
     },
 
     // 触底加载

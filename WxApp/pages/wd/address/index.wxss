@@ -1,3 +1,41 @@
+.btn {
+    background: none;
+    line-height: 85rpx;
+    border-radius: 10rpx;
+}
+
+.btn::after {
+    border: none;
+}
+
+.btn-default {
+    background-color: #fb595b;
+    color: white;
+}
+
+.btn-danger {
+    background-color: #ff5546;
+    color: white;
+}
+
+.btn-small {
+    width: 210rpx;
+    height: 57rpx;
+    border-radius: 57rpx;
+    line-height: 57rpx;
+    font-size: 28rpx;
+}
+
+.btn-block {
+    width: 700rpx;
+    margin: auto 25rpx;
+}
+
+.button-hover,
+.navigator-hover {
+    opacity: 0.85;
+}
+
 page{
     height: 100%;
 }
@@ -28,6 +66,8 @@ radio {
     margin: auto 25rpx;
     padding: 0 25rpx;
     height: 150rpx;
+    font-size: 26rpx;
+    box-sizing: border-box;
 }
 
 .item-one {

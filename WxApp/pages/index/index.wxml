@@ -52,13 +52,13 @@
 
     <view class="cp_list">
       <view class="cp" wx:for="{{list}}" wx:key="index">
-        <navigator url="/pages/index/cpxq?id={{item.id}}">
+        <view bindtap="go" data-id="{{item.id}}">
           <image src="{{item.thumb_image}}"></image>
           <view class="bt">{{item.name}}</view>
           <view class="jg">¥ {{item.price}}</view>
           <view class="yj">¥ {{item.original}}</view>
-        </navigator>
-        <view class="gwc_an">
+        </view>
+        <view class="gwc_an" catchtap="addCart" data-id="{{item.id}}" data-index="{{index}}">
           <image src="/image/gwc_tb.png"></image>
         </view>
       </view>

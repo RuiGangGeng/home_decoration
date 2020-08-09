@@ -44,14 +44,14 @@ class Order extends Api
     }
 
     /**
-     * 订单列表
+     * 订单列表 废弃的API
      * @param string|bool $shop_id 商家：id
      * @param string|bool $status 状态：id
      * @param string|bool $phone 联系人：id
      * @throws DbException
-     * @throws \think\Exception
+     * @throws Exception
      */
-    public function getOrders($shop_id = false, $status = false, $phone = false)
+    public function getOrders_($shop_id = false, $status = false, $phone = false)
     {
         $user_id = $this->auth->id;
         $where   = [];
@@ -62,7 +62,7 @@ class Order extends Api
             $where['mini_order.is_show'] = '1';
         }
         $status && $where['mini_order.status'] = $status;
-        ($status && $where['mini_order.status'] == '4') && $where['mini_order.status'] = ['in', ['4', '5', '6', '7','8','9','10']];
+        ($status && $where['mini_order.status'] == '4') && $where['mini_order.status'] = ['in', ['4', '5', '6', '7', '8', '9', '10']];
         $phone && $where['orderaddress.phone'] = ['like', $phone . '%'];
 
         $result = (new Orders())
@@ -96,6 +96,44 @@ class Order extends Api
     }
 
     /**
+     * 订单列表
+     * @throws DbException
+     * @throws Exception
+     */
+    public function getOrders($status = false)
+    {
+        $user_id = $this->auth->id;
+        $result  = (new Orders())
+            ->where(['table_order.status' => $status, 'table_order.user_id' => $user_id, 'table_order.is_show' => '1'])
+            ->with(['ordershop', 'orderaddress', 'ordergood'])
+            ->order('updatetime', 'desc')
+            ->paginate(null, false, $this->paginate)
+            ->each(function ($item) {
+                $item->visible(['id', 'status', 'pay_time', 'createtime', 'ordershop', 'total_counts', 'total_price', 'orderaddress', 'ordergood']);
+                $item->getRelation('ordershop')->visible(['name', 'id']);
+                $item->getRelation('orderaddress')->visible(['contact', 'phone', 'address']);
+                if ($item->getRelation('ordergood')) {
+                    foreach ($item->getRelation('ordergood') as $items) {
+                        $items->hidden(['id', 'order_id']);
+                        $items->thumb_image = self::patch_oss($items->thumb_image);
+                    }
+                }
+                return $item;
+            });
+
+        $result = $result->toArray();
+        foreach ($result['data'] as &$item) {
+            // 订单超时
+//            if ($item['createtime'] + 30 * 60 < time() && $item['pay_time'] === null) {
+//                $item['status'] = '-1';
+//                Db::name('order')->where(['id' => $item['id']])->update(['status' => '-1']);
+//            }
+        }
+
+        $result ? $this->success('获取成功', $result) : $this->success('暂无记录');
+    }
+
+    /**
      * 订单详情
      * @param integer $id 主键：id
      * @param bool|integer $shop_id 商家:id
@@ -106,12 +144,12 @@ class Order extends Api
     public function getOrder($id, $shop_id = false)
     {
         // $user_id = $this->auth->id;
-        $where = ['mini_order.id' => $id];
+        $where = ['table_order.id' => $id];
         if ($shop_id) {
-            $where['mini_order.shop_id'] = $shop_id;
+            $where['table_order.shop_id'] = $shop_id;
         } else {
             // $where['mini_order.user_id'] = $user_id;
-            $where['mini_order.is_show'] = '1';
+            $where['table_order.is_show'] = '1';
         }
         $result = Orders::with(['orderaddress', 'ordershop', 'ordergood'])
             ->where($where)
@@ -134,6 +172,30 @@ class Order extends Api
     }
 
     /**
+     * 用户确认收货 废弃的API
+     * @param integer $id 主键：id
+     * @throws DbException
+     */
+    public function confirmReceiving_($id)
+    {
+        $find = Orders::get(['id' => $id]);
+        if ($find) {
+            $find->receiving_time = time();
+            $find->status         = '3';
+            $result               = $find->save();
+
+            // 收益到账
+            $shop_commission = config('site.shop_commission');
+            Db::name('shop_balance')->where(['shop_id' => $find->shop_id])->setInc('balance', $find->total_price * $shop_commission);
+            Db::name('shop_balance')->where(['shop_id' => $find->shop_id])->setDec('balance_', $find->total_price * $shop_commission);
+
+            $result ? $this->success('收货成功') : $this->error('收货失败');
+        } else {
+            $this->error('未找到要操作的记录');
+        }
+    }
+
+    /**
      * 用户确认收货
      * @param integer $id 主键：id
      * @throws DbException
@@ -145,13 +207,7 @@ class Order extends Api
             $find->receiving_time = time();
             $find->status         = '3';
             $result               = $find->save();
-
-            // 收益到账
-            $shop_commission = config('site.shop_commission');
-            Db::name('shop_balance')->where(['shop_id'=>$find->shop_id])->setInc('balance',$find->total_price*$shop_commission);
-            Db::name('shop_balance')->where(['shop_id'=>$find->shop_id])->setDec('balance_',$find->total_price*$shop_commission);
-
-            $result ? $this->success('收货成功') : $this->error('收货失败');
+            $result ? $this->success('确认成功') : $this->error('确认失败');
         } else {
             $this->error('未找到要操作的记录');
         }
@@ -176,6 +232,26 @@ class Order extends Api
             $result                  = $find->save();
 
             $result ? $this->success('申请成功') : $this->error('申请失败');
+        } else {
+            $this->error('未找到要操作的记录');
+        }
+    }
+
+    /**
+     * @param $id
+     * @param $refund_apply_msg
+     * @throws DbException
+     */
+    public function evaluate($id, $mark, $refund_apply_msg)
+    {
+        $find = Orders::get(['id' => $id]);
+        if ($find) {
+            $find->platform_agree_time = time();
+            $find->status              = '4';
+            $find->platform_agree_msg  = $refund_apply_msg;
+            $find->mark                = $mark;
+            $result                    = $find->save();
+            $result ? $this->success('评价成功') : $this->error('评价失败');
         } else {
             $this->error('未找到要操作的记录');
         }
@@ -219,8 +295,8 @@ class Order extends Api
                 $find->save();
 
                 // 操作商家余额
-                Db::name('shop_balance')->where(['shop_id'=>$find->shop_id])->setDec('balance_',$find->total_price);
-                Db::name('shop_balance')->where(['shop_id'=>$find->shop_id])->setDec('total_price',$find->total_price);
+                Db::name('shop_balance')->where(['shop_id' => $find->shop_id])->setDec('balance_', $find->total_price);
+                Db::name('shop_balance')->where(['shop_id' => $find->shop_id])->setDec('total_price', $find->total_price);
 
                 (new Pay())->refundOrder($find->total_price, $find->numbers);
                 Db::commit();
@@ -253,8 +329,8 @@ class Order extends Api
                 $find->save();
 
                 // 操作商家余额
-                Db::name('shop_balance')->where(['shop_id'=>$find->shop_id])->setDec('balance_',$find->total_price);
-                Db::name('shop_balance')->where(['shop_id'=>$find->shop_id])->setDec('total_price',$find->total_price);
+                Db::name('shop_balance')->where(['shop_id' => $find->shop_id])->setDec('balance_', $find->total_price);
+                Db::name('shop_balance')->where(['shop_id' => $find->shop_id])->setDec('total_price', $find->total_price);
 
                 (new Pay())->refundOrder($find->total_price, $find->numbers);
                 Db::commit();
@@ -302,8 +378,8 @@ class Order extends Api
         $find = Orders::get(['id' => $id]);
         if ($find) {
             (time() - $find->pay_time > 3600 * 24 * 7) && $this->error('申请失败，支付时间超过了七天');
-            $find->status            = '8';
-            $result                  = $find->save();
+            $find->status = '8';
+            $result       = $find->save();
             $result ? $this->success('申请成功') : $this->error('申请失败');
         } else {
             $this->error('未找到要操作的记录');

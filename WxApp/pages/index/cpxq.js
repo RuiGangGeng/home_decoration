@@ -13,6 +13,7 @@ Page({
         cart: null,
         auth: false,
         like: false,
+        in_cart: !1
     },
 
     onLoad: function (e) {
@@ -68,6 +69,47 @@ Page({
 
     bindAuth() {
         this.getLike()
-    }
+    },
 
+    addCart() {
+        let cart = storage.getStorage('cart') || false
+        if (!cart) cart = []
+        let in_cart = false
+        for (let i of cart) {
+            if (i.id === Number(this.data.shop_id)) {
+                wx.showModal({
+                    title: '温馨提示',
+                    content: '您已经将该服务添加购物车',
+                    showCancel: false,
+                })
+                in_cart = true
+                this.setData({in_cart: !0})
+            }
+        }
+        if (!in_cart) {
+            this.data.info.selected = true
+            cart.push(this.data.info)
+            wx.showToast({title: '添加成功'})
+        }
+        storage.setStorage('cart', cart, 20 * 60)
+    },
+
+    buy() {
+        let cart = storage.getStorage('cart') || false
+        if (!cart) cart = []
+        let in_cart = false
+        for (let i of cart) {
+            if (i.id === Number(this.data.shop_id)) {
+                in_cart = true
+                this.setData({in_cart: !0})
+                wx.switchTab({url: '/pages/gwc/index'})
+            }
+        }
+        if (!in_cart) {
+            this.data.info.selected = true
+            cart.push(this.data.info)
+            wx.switchTab({url: '/pages/gwc/index'})
+            storage.setStorage('cart', cart, 20 * 60)
+        }
+    }
 })

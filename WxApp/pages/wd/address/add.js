@@ -48,8 +48,8 @@ Page({
         let latitude = that.data.update ? that.data.param.latitude : app.globalData.location.latitude
         let longitude = that.data.update ? that.data.param.longitude : app.globalData.location.longitude
         wx.chooseLocation({
-            latitude:latitude,
-            longitude:longitude,
+            latitude: latitude,
+            longitude: longitude,
             success: function (res) {
                 getApp().globalData.debug && console.log(res)
                 that.setData({

@@ -14,7 +14,7 @@ Page({
         list: [],
         total: 0,
         page: 0,
-        info:null
+        info: null
     },
 
     onLoad: function () {
@@ -25,7 +25,24 @@ Page({
                 imgUrl: res.data
             })
         })
-
+        // 获取地理位置
+        wx.getLocation({
+            success(res) {
+                that.setData({
+                    auth: true,
+                    'location.latitude': res.latitude,
+                    'location.longitude': res.longitude,
+                })
+                user.gpsToAddress(res.longitude, res.latitude, function (res) {
+                    that.setData({
+                        'location.address': res.result.formatted_addresses.recommend,
+                        has_location: true,
+                    })
+                    app.globalData.location = that.data.location
+                    that.loadData()
+                })
+            }
+        })
         // 获取行业分类
         util.wxRequest("Index/getCategories", {}, res => {
             res.code === 200 && that.setData({
@@ -131,7 +148,7 @@ Page({
         that.setData({
             page: 0,
             list: [],
-            total:0,
+            total: 0,
         })
         storage.removeStorage('token')
         app.wxLoginCallback = function () {
@@ -139,5 +156,35 @@ Page({
             wx.stopPullDownRefresh()
         }
         user.wxLogin("User/wxAppLogIn")
+    },
+
+    go(e) {
+        let id = e.currentTarget.dataset.id
+        wx.navigateTo({url: "/pages/index/cpxq?id=" + id})
+    },
+
+    addCart(e) {
+        let id = e.currentTarget.dataset.id
+        let index = e.currentTarget.dataset.index
+        let cart = storage.getStorage('cart') || false
+        if (!cart) cart = []
+        let in_cart = false
+        for (let i of cart) {
+            if (i.id === Number(id)) {
+                wx.showModal({
+                    title: '温馨提示',
+                    content: '您已经将该服务添加购物车',
+                    showCancel: false,
+                })
+                in_cart = true
+                this.setData({in_cart: !0})
+            }
+        }
+        if (!in_cart) {
+            this.data.list[index].selected = true
+            cart.push(this.data.list[index])
+            wx.showToast({title: '添加成功'})
+        }
+        storage.setStorage('cart', cart, 20 * 60)
     },
 })

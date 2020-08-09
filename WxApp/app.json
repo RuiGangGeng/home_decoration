@@ -13,7 +13,9 @@
         "pages/wd/pj",
         "pages/wd/jcdz",
         "pages/logs/logs",
-        "pages/content/detail"
+        "pages/content/detail",
+        "pages/wd/address/index",
+        "pages/wd/info"
     ],
     "window": {
         "navigationBarBackgroundColor": "#fb595b",
@@ -50,6 +52,11 @@
                 "selectedIconPath": "image/foot_wdtbb.png"
             }
         ]
+    },
+    "permission": {
+        "scope.userLocation": {
+            "desc": "您的位置信息将用于获取周边服务"
+        }
     },
     "sitemapLocation": "sitemap.json"
 }

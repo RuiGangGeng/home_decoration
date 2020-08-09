@@ -5,6 +5,8 @@ App({
         // storage.removeStorage('token')
         user.wxLogin("User/wxAppLogIn")
         user.wxAuthUserInfo('User/wxAppAuthUser')
+        let cart = storage.getStorage('cart').length || 0
+        this.setCartNum(String(cart))
     },
     globalData: {
         debug: true,
@@ -15,6 +17,17 @@ App({
         // api_host: 'https://jxm.bowangyun.net/api/',
         token: false,
         storage_time: 2592000,
-        location: null,
-    }
+        location: {
+            latitude:39.906930,
+            longitude:116.397570,
+        }
+    },
+    // 购物车底部导航数字
+    setCartNum: function(number) {
+        // if (number * 1 > 0) {
+        //     wx.setTabBarBadge({ index: 2, text: number })
+        // } else {
+        //     wx.hideTabBarRedDot({ index: 2 })
+        // }
+    },
 })

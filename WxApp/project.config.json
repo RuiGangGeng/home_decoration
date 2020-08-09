@@ -144,6 +144,13 @@
 					"pathName": "pages/wd/pj",
 					"query": "id=8",
 					"scene": null
+				},
+				{
+					"id": 12,
+					"name": "pages/wd/info",
+					"pathName": "pages/wd/info",
+					"query": "type=user&id=10",
+					"scene": null
 				}
 			]
 		}

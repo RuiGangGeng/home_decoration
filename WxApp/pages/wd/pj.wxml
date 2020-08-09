@@ -21,7 +21,7 @@
                     <image catchtap='in_xin' id='{{index+1}}' data-in='use_sc' src='../../image/pj_xxtb.png'></image>
                 </block>
             </view>
-            <textarea placeholder-class="phcolor" placeholder="买家留言......" bindinput="bindInput" data-field="refund_apply_msg" value="{{param.refund_apply_msg}}"></textarea>
+            <textarea placeholder-class="phcolor" placeholder="请输入评价内容......" bindinput="bindInput" data-field="refund_apply_msg" value="{{param.refund_apply_msg}}"></textarea>
         </view>
         <view class="tj_an">
             <button bindtap="confirmRefund">提交</button>

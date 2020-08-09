@@ -1,4 +1,4 @@
-<scroll-view class="container" scroll-y="true">
+<view class="container">
     <view class="container-shadow"></view>
     <!-- 收货地址 -->
     <view class="address box-shadow">
@@ -70,7 +70,7 @@
             <view wx:if="{{info.status==='1'}}">待检查</view>
             <view wx:if="{{info.status==='2'}}">待收货</view>
             <view wx:if="{{info.status==='3'}}">交易完成</view>
-            <view wx:if="{{info.status==='4'}}">待退款</view>
+            <view wx:if="{{info.status==='4'}}">交易完成</view>
             <view wx:if="{{info.status==='5'}}">已退款</view>
             <view wx:if="{{info.status==='6'}}">拒绝退款</view>
             <view wx:if="{{info.status==='7'}}">商家退单</view>
@@ -114,7 +114,7 @@
             <view>{{info.delivery_time}}</view>
         </view>
         <view class="line clear_float" wx:if="{{info.receiving_time}}">
-            <view>收货时间：</view>
+            <view>确认时间：</view>
             <view>{{info.receiving_time}}</view>
         </view>
         <view class="line clear_float" wx:if="{{info.refund_apply_time}}">
@@ -150,11 +150,22 @@
             <view>{{info.message}}</view>
         </view>
         <view class="line clear_float" wx:if="{{info.platform_agree_time}}">
-            <view>平台退款时间：</view>
+            <view>评价时间：</view>
             <view>{{info.platform_agree_time}}</view>
         </view>
-        <view class="line clear_float" wx:if="{{info.platform_agree_msg}}">
-            <view>平台退款原因：</view>
+        <view class="line clear_float" wx:if="{{info.mark}}">
+            <view>评分：</view>
+            <view class="pf">
+                <block wx:for="{{one_2}}" wx:key="index">
+                    <image src='../../image/pj_xxtbb.png'></image>
+                </block>
+                <block wx:for="{{two_2}}" wx:key="index">
+                    <image src='../../image/pj_xxtb.png'></image>
+                </block>
+            </view>
+        </view>
+        <view class="line clear_float" wx:if="{{info.platform_agree_msg}}" style="height:unset;">
+            <view>评价内容：</view>
             <view>{{info.platform_agree_msg}}</view>
         </view>
         <view class="line clear_float" wx:if="{{info.platform_refuse_time}}">
@@ -166,7 +177,7 @@
             <view>{{info.platform_refuse_msg}}</view>
         </view>
     </view>
-</scroll-view>
+</view>
 
 <view class="message_" wx:if="{{refund}}">
     <view class="message-wrapper box-shadow">

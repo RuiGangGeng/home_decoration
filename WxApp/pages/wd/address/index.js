@@ -15,7 +15,9 @@ Page({
     },
 
     onLoad: function (options) {
-        // this.setData({type: options.type, shop_id: options.shop_id})
+        if(typeof options.type !=='undefined'){
+            this.setData({type: options.type})
+        }
     },
 
     onShow: function () {
@@ -71,7 +73,7 @@ Page({
     // 选择收货地址 判断配送距离
     checkAddress: function (e) {
         let that = this;
-        // if (that.data.type === '0') return false
+        if (that.data.type === '0') return false
         let id = e.currentTarget.dataset.id;
         storage.setStorage('generateOrder_address_id', id)
         wx.navigateBack()

@@ -3,7 +3,7 @@ const util = require('../../utils/util.js')
 Page({
     data: {
         one_2: 0,
-        two_2: 6,
+        two_2: 5,
         param: {
             refund_apply_msg: ''
         },
@@ -43,7 +43,7 @@ Page({
         }
         this.setData({
             one_2: one_2,
-            two_2: 6 - one_2
+            two_2: 5 - one_2
         })
     },
 

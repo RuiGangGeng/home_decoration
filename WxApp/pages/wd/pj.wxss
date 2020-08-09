@@ -84,7 +84,7 @@
     border-radius: 20rpx;
     width: 100%;
     height: 360rpx;
-    font-size: 22rpx;
+    font-size: 28rpx;
     line-height: 32rpx;
     color: #999;
 }

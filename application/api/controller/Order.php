@@ -124,10 +124,10 @@ class Order extends Api
         $result = $result->toArray();
         foreach ($result['data'] as &$item) {
             // 订单超时
-//            if ($item['createtime'] + 30 * 60 < time() && $item['pay_time'] === null) {
-//                $item['status'] = '-1';
-//                Db::name('order')->where(['id' => $item['id']])->update(['status' => '-1']);
-//            }
+            if ($item['createtime'] + 30 * 60 < time() && $item['pay_time'] === null) {
+                $item['status'] = '-1';
+                Db::name('order')->where(['id' => $item['id']])->update(['status' => '-1']);
+            }
         }
 
         $result ? $this->success('获取成功', $result) : $this->success('暂无记录');

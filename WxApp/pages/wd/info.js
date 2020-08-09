@@ -8,7 +8,10 @@ Page({
         },
         type: false,
         id: false,
+        one_2: 0,
+        two_2: 0,
     },
+
     onLoad: function (options) {
         // 获取订单详情
         util.wxRequest("Order/getOrder", {id: options.id}, res => {
@@ -24,7 +27,12 @@ Page({
                 res.data.back_time = res.data.back_time ? util.formatTime(new Date(res.data.back_time * 1000)) : res.data.back_time
                 res.data.platform_refuse_time = res.data.platform_refuse_time ? util.formatTime(new Date(res.data.platform_refuse_time * 1000)) : res.data.platform_refuse_time
                 res.data.platform_agree_time = res.data.platform_agree_time ? util.formatTime(new Date(res.data.platform_agree_time * 1000)) : res.data.platform_agree_time
-
+                if (res.data.mark) {
+                    this.setData({
+                        one_2: res.data.mark,
+                        two_2: 5 - res.data.mark,
+                    })
+                }
                 this.setData({info: res.data, id: options.id, type: options.type});
             }
         })

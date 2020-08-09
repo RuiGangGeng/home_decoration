@@ -1,5 +1,4 @@
 page {
-    height: calc(100% - 25rpx);
     background: #f1f1f1f1;
     font-size: 28rpx;
     color: #333333;
@@ -86,7 +85,7 @@ page {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1rpx solid #d7d7d7d7;
+    border-bottom: 1rpx solid rgba(215, 215, 215, 0.84);
 }
 
 .item:last-child {
@@ -97,7 +96,7 @@ page {
     width: 160rpx;
     height: 160rpx;
     border-radius: 10rpx;
-    border: 1rpx solid #d7d7d7d7;
+    border: 1rpx solid rgba(215, 215, 215, 0.84);
     overflow: hidden;
     margin: 10rpx 0;
 }
@@ -207,15 +206,15 @@ textarea {
 .operate-line {
     height: 1rpx;
     width: 100%;
-    background: #d7d7d7d7;
+    background: rgba(215, 215, 215, 0.84);
     position: fixed;
     bottom: 101rpx;
     left: 0;
     z-index: 101;
 }
+
 page {
-    background: #f1f1f1f1;
-    height: 100%;
+    background: rgba(241, 241, 241, 0.95);
 }
 
 .box-shadow {
@@ -254,7 +253,7 @@ page {
 }
 
 .item-status {
-    color: #82828282;
+    color: rgba(130, 130, 130, 0.51);
 }
 
 .item-time {
@@ -263,7 +262,7 @@ page {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    color: #82828282;
+    color: rgba(130, 130, 130, 0.51);
 }
 
 .item-good-wrapper {
@@ -296,7 +295,7 @@ page {
     line-height: 30rpx;
     border-radius: 40rpx;
     background: #f85537;
-    color: white;
+    color: #ffffff;
     position: absolute;
     top: -15rpx;
     right: -15rpx;
@@ -362,7 +361,7 @@ page {
     font-size: 30rpx;
     font-weight: bold;
     padding: 0 25rpx;
-    border-bottom: 1rpx solid #d7d7d7d7;
+    border-bottom: 1rpx solid rgba(215, 215, 215, 0.84);
 }
 
 .line {
@@ -370,7 +369,7 @@ page {
     width: 100%;
     line-height: 75rpx;
     min-height: 75rpx;
-    border-bottom: 1rpx solid #d7d7d7d7;
+    border-bottom: 1rpx solid rgba(215, 215, 215, 0.84);
 }
 
 .line view:first-child {
@@ -482,7 +481,7 @@ page {
     font-size: 30rpx;
     font-weight: bold;
     height: 55rpx;
-    border-bottom: 1rpx solid #d7d7d7d7;
+    border-bottom: 1rpx solid rgba(215, 215, 215, 0.84);
 }
 
 .message-box {
@@ -500,7 +499,8 @@ page {
 .message-confirm {
     border-radius: 10rpx;
 }
-view{
+
+view {
     box-sizing: border-box;
 }
 
@@ -540,4 +540,17 @@ view{
 .button-hover,
 .navigator-hover {
     opacity: 0.85;
+}
+
+.pf {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 75rpx;
+}
+
+.pf image {
+    width: 45rpx;
+    height: 40rpx;
+    margin-right: 20rpx;
 }

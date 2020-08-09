@@ -58,7 +58,16 @@
                     </view>
                     <image src="../../image/jt_lj.png"></image>
                 </view>
-                <view data-url="/pages/wd/address/index" bindtap="auth">
+                <view data-url="/pages/wd/ywc" bindtap="auth">
+                    <view class="xx">
+                        <view>
+                            <image src="../../image/wd_navtb5.png" style="width:38rpx;height:38rpx;"></image>
+                        </view>
+                        <text>已完成</text>
+                    </view>
+                    <image src="../../image/jt_lj.png"></image>
+                </view>
+                <view data-url="/pages/wd/address/index?type=0" bindtap="auth">
                     <view class="xx">
                         <view>
                             <image src="../../image/wd_navtb4.png" style="width:31rpx;height:42rpx;"></image>

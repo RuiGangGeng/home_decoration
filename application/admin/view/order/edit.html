@@ -117,19 +117,27 @@
         </div>
     </div>
     {/if}
-    {if $row['status']==9}
+    {if $row['status']==4}
     <div class="form-group">
-        <label class="control-label col-xs-12 col-sm-2">平台退单时间:</label>
+        <label class="control-label col-xs-12 col-sm-2">评价时间:</label>
         <div class="col-xs-12 col-sm-8">
             <input id="c-platform_agree_time" disabled data-rule="required" class="form-control" name="row[platform_agree_time]" type="text" value="{:date('Y-m-d H:i:s',$row.platform_agree_time)}">
         </div>
     </div>
     {/if}
-    {if $row['status']==8}
-    <div class="form-group" id="c-platform_agree_msg_">
-        <label class="control-label col-xs-12 col-sm-2">平台退单原因:</label>
+    {if $row['status']==4}
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">评分:</label>
         <div class="col-xs-12 col-sm-8">
-            <input id="c-platform_agree_msg" data-rule="required" class="form-control" name="row[platform_agree_msg]" type="text" value="{$row.platform_agree_msg|htmlentities}">
+            <input id="c-platform_agree_time—" disabled data-rule="required" class="form-control" name="row[mark]" type="text" value="{$row.mark|htmlentities}">
+        </div>
+    </div>
+    {/if}
+    {if $row['status']==4}
+    <div class="form-group" id="">
+        <label class="control-label col-xs-12 col-sm-2">评价内容:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-platform_agree_msg" disabled data-rule="required" class="form-control" name="row[platform_agree_msg]" type="text" value="{$row.platform_agree_msg|htmlentities}">
         </div>
     </div>
     {/if}
@@ -222,7 +230,7 @@
 
             <div class="radio">
             {foreach name="statusList" item="vo"}
-            <label for="row[status]-{$key}"><input id="row[status]-{$key}" name="row[status]" {if $key<9&&$row['status']==8}disabled{/if} type="radio" value="{$key}" {in name="key" value="$row.status"}checked{/in} /> {$vo}</label>
+            <label for="row[status]-{$key}"><input id="row[status]-{$key}" name="row[status]" {if true}disabled{/if} type="radio" value="{$key}" {in name="key" value="$row.status"}checked{/in} /> {$vo}</label>
             {/foreach}
             </div>
 

@@ -15,7 +15,8 @@
         "pages/logs/logs",
         "pages/content/detail",
         "pages/wd/address/index",
-        "pages/wd/info"
+        "pages/wd/info",
+        "pages/wd/ywc"
     ],
     "window": {
         "navigationBarBackgroundColor": "#fb595b",

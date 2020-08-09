@@ -22,7 +22,7 @@
                     </view>
                 </view>
                 <view data-url="wdzj" bindtap="auth">
-                    <view class="sl">{{info.like>0?info.like:'暂无'}}</view>
+                    <view class="sl">{{info.view>0?info.view:'暂无'}}</view>
                     <view class="xx zj">
                         <image src="../../image/zj_tb.png"></image>
                         <text>我的足迹</text>

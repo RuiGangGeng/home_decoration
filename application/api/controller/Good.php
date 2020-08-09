@@ -15,7 +15,7 @@ use think\exception\DbException;
  */
 class Good extends Api
 {
-    protected $noNeedLogin = ['getGood','getGoods'];
+    protected $noNeedLogin = ['getGood', 'getGoods'];
     protected $noNeedRight = '*';
 
     protected function _initialize()
@@ -151,20 +151,31 @@ class Good extends Api
      * @param boolean $back 是否校验上架下架
      * @throws DbException
      */
-    public function getGood($id,$back = false)
+    public function getGood($id, $back = false)
     {
         $result = Goods::get($id);
         if ($result) {
-            if(!$back){
+            if (!$back) {
                 $result['status'] != 1 && $this->error('商品已下架');
             }
             $result['thumb_image'] = self::patch_oss($result['thumb_image']);
             $result['images']      = self::patch_oss($result['images'], true);
             $result['content']     = self::patch_cdn($result['content']);
-            Db::name('view')->insert([
-                'user_id'=>$this->auth->id,
-                'shop_id'=>$id,
-            ]);
+            $find                  = Db::name('view')->where([
+                'user_id' => $this->auth->id,
+                'shop_id' => $id,
+            ])->find();
+            if ($find) {
+                Db::name('view')->where(['id'=>$find['id']])->update([
+                    'view_time' => time()
+                ]);
+            } else {
+                Db::name('view')->insert([
+                    'user_id'     => $this->auth->id,
+                    'shop_id'     => $id,
+                    'view_time' => time()
+                ]);
+            }
             $this->success('获取成功', $result);
         } else {
             $this->error('商品不存在，或已下架');

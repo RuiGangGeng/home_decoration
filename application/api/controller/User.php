@@ -131,6 +131,7 @@ class User extends Api
         $result = Db::name('view')
             ->alias('l')
             ->where(['l.user_id' => $this->auth->id])
+            ->order('l.view_time','desc')
             ->join('good g', 'g.id = l.shop_id')
             ->field('l.*,g.name,g.original,g.price,g.thumb_image')
             ->paginate(null, false, $this->paginate)

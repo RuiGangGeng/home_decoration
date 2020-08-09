@@ -1,6 +1,6 @@
 <!--pages/wd/dpj.wxml 待评价-->
 <view class="container">
-    <view class="cont_bg">
+    <view class="cont_bg" wx:if="{{list.length>0}}">
         <view class="list">
             <view class="nr" wx:for="{{list}}" wx:key="index">
                 <navigator url="#">
@@ -19,4 +19,8 @@
             </view>
         </view>
     </view>
+    <block wx:if="{{list.length===0}}">
+        <view style="height: 1rpx;"></view>
+        <view class="no-data">暂无数据</view>
+    </block>
 </view>

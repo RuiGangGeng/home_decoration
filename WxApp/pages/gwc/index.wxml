@@ -73,7 +73,7 @@
         <view class="message_" wx:if="{{refund}}">
             <view class="message-wrapper box-shadow">
                 <view class="message-title">订单留言</view>
-                <textarea class="message-box box-shadow" fixed="true" bindinput="bindInput" data-field="refund_refuse_msg" value="{{param.refund_refuse_msg}}">请输入您的留言信息，可不填</textarea>
+                <textarea class="message-box box-shadow" fixed="true" bindinput="bindInput" data-field="refund_refuse_msg" value="{{param.refund_refuse_msg}}" placeholder="请输入您的留言信息，可不填"></textarea>
                 <view class="message-operate">
                     <button class="btn btn-default btn-small message-confirm btn-green" bindtap="sub">确定</button>
                 </view>

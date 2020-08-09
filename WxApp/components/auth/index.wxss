@@ -5,6 +5,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 0 3px 0 rgba(183, 183, 183, 0.8);
 }
 
 .loginShadow {

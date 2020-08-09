@@ -234,7 +234,7 @@ Page({
             this.setData({refund: true})
         } else {
             this.setData({auth: true})
-            app.userAuthReadyCallback =  () =>{
+            app.userAuthReadyCallback = () => {
                 this.setData({auth: false})
                 this.refund()
             }
@@ -250,7 +250,7 @@ Page({
                 showCancel: false,
                 success(res) {
                     if (res.confirm) {
-                        wx.navigateTo({url: '/pages/mine/address/add'})
+                        wx.navigateTo({url: '/pages/wd/jcdz'})
                     }
                 }
             })
@@ -275,8 +275,10 @@ Page({
         }
         that.data.param.good_ids = arr.join(',')
         //调用订单创建接口
+        wx.showLoading({title: '生成订单中', mask: true})
         util.wxRequest('Pay/pay', that.data.param, res => {
             if (res.code === 200) {
+                wx.hideLoading()
                 // 发起支付
                 wx.requestPayment({
                     timeStamp: res.data.package.timeStamp,
@@ -289,7 +291,11 @@ Page({
                         util.wxRequest('Pay/queryPayResult', {order_id: res.data.out_trade_no}, res => {
                             wx.hideLoading()
                             storage.removeStorage('cart')
-                            wx.navigateTo({url: '/pages/wd/yfk'})
+                            if(res.code===200){
+                                wx.navigateTo({url: '/pages/wd/djc'})
+                            }else {
+                                wx.navigateTo({url: '/pages/wd/yfk'})
+                            }
                         })
                     }
                 })

@@ -331,6 +331,7 @@ page {
 }
 
 .message-box {
+    width: 100%;
     margin: 25rpx 0;
     padding: 25rpx;
     box-sizing: border-box;

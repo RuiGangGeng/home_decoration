@@ -12,9 +12,7 @@ App({
         debug: true,
         user_info: false,
         user_auth: false,
-        api_host: 'http://www.home.com/api/',
-        // api_host: 'https://mini-jd.7758521.work/api/',
-        // api_host: 'https://jxm.bowangyun.net/api/',
+        api_host: 'https://baiwan.7758521.work/api/',
         token: false,
         storage_time: 2592000,
         location: {

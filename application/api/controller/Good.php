@@ -7,6 +7,7 @@ namespace app\api\controller;
 use app\admin\model\Good as Goods;
 use app\admin\model\ShopAddress;
 use app\common\controller\Api;
+use think\Db;
 use think\exception\DbException;
 
 /**
@@ -160,6 +161,10 @@ class Good extends Api
             $result['thumb_image'] = self::patch_oss($result['thumb_image']);
             $result['images']      = self::patch_oss($result['images'], true);
             $result['content']     = self::patch_cdn($result['content']);
+            Db::name('view')->insert([
+                'user_id'=>$this->auth->id,
+                'shop_id'=>$id,
+            ]);
             $this->success('获取成功', $result);
         } else {
             $this->error('商品不存在，或已下架');

@@ -187,4 +187,11 @@ Page({
         }
         storage.setStorage('cart', cart, 20 * 60)
     },
+    onHide(){
+        if(!this.data.ggautoplay){
+        // 停止正在播放的视频
+            var videoContextPre = wx.createVideoContext(String(this.data._index))
+            videoContextPre.stop()
+        }
+    }
 })

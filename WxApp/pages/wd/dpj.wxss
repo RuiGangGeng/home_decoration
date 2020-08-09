@@ -25,6 +25,10 @@
     height: 100%;
 }
 
+.no-data {
+    color: #666666;
+}
+
 .cont_bg .list .nr navigator .xx {
     margin-left: 28rpx;
     width: 440rpx;
